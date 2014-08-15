@@ -16,8 +16,10 @@ namespace EmployeeManagementServiceLibrary
         void AddEmployee(EmployeeManagement emp);
         [OperationContract]
         void RemoveEmployee(string id);
-        [OperationContract]
+        [OperationContract (Name="SearchById")]
         EmployeeManagement GetEmployee(string id);
+        [OperationContract (Name="SearchByName")]
+        EmployeeManagement GetEmployee(string name);
         [OperationContract]
         List<EmployeeManagement> GetAllEmployee();
     }
