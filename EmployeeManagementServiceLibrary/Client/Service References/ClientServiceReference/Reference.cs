@@ -107,52 +107,58 @@ namespace Client.ClientServiceReference {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ClientServiceReference.IEmployeeAdd")]
-    public interface IEmployeeAdd {
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ClientServiceReference.IEmployeeCreate")]
+    public interface IEmployeeCreate {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeAdd/CreateEmployee", ReplyAction="http://tempuri.org/IEmployeeAdd/CreateEmployeeResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeCreate/CreateEmployee", ReplyAction="http://tempuri.org/IEmployeeCreate/CreateEmployeeResponse")]
         Client.ClientServiceReference.EmployeeManagement CreateEmployee(int id, string name, string comments);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeAdd/CreateEmployee", ReplyAction="http://tempuri.org/IEmployeeAdd/CreateEmployeeResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeCreate/CreateEmployee", ReplyAction="http://tempuri.org/IEmployeeCreate/CreateEmployeeResponse")]
         System.Threading.Tasks.Task<Client.ClientServiceReference.EmployeeManagement> CreateEmployeeAsync(int id, string name, string comments);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeAdd/AddEmployee", ReplyAction="http://tempuri.org/IEmployeeAdd/AddEmployeeResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeCreate/AddEmployee", ReplyAction="http://tempuri.org/IEmployeeCreate/AddEmployeeResponse")]
         void AddEmployee(Client.ClientServiceReference.EmployeeManagement emp);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeAdd/AddEmployee", ReplyAction="http://tempuri.org/IEmployeeAdd/AddEmployeeResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeCreate/AddEmployee", ReplyAction="http://tempuri.org/IEmployeeCreate/AddEmployeeResponse")]
         System.Threading.Tasks.Task AddEmployeeAsync(Client.ClientServiceReference.EmployeeManagement emp);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeAdd/RemoveEmployee", ReplyAction="http://tempuri.org/IEmployeeAdd/RemoveEmployeeResponse")]
-        void RemoveEmployee(string id);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeCreate/RemoveEmployee", ReplyAction="http://tempuri.org/IEmployeeCreate/RemoveEmployeeResponse")]
+        void RemoveEmployee(int id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeAdd/RemoveEmployee", ReplyAction="http://tempuri.org/IEmployeeAdd/RemoveEmployeeResponse")]
-        System.Threading.Tasks.Task RemoveEmployeeAsync(string id);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeCreate/RemoveEmployee", ReplyAction="http://tempuri.org/IEmployeeCreate/RemoveEmployeeResponse")]
+        System.Threading.Tasks.Task RemoveEmployeeAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeCreate/ModifyDetails", ReplyAction="http://tempuri.org/IEmployeeCreate/ModifyDetailsResponse")]
+        void ModifyDetails(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeCreate/ModifyDetails", ReplyAction="http://tempuri.org/IEmployeeCreate/ModifyDetailsResponse")]
+        System.Threading.Tasks.Task ModifyDetailsAsync(int id);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IEmployeeAddChannel : Client.ClientServiceReference.IEmployeeAdd, System.ServiceModel.IClientChannel {
+    public interface IEmployeeCreateChannel : Client.ClientServiceReference.IEmployeeCreate, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class EmployeeAddClient : System.ServiceModel.ClientBase<Client.ClientServiceReference.IEmployeeAdd>, Client.ClientServiceReference.IEmployeeAdd {
+    public partial class EmployeeCreateClient : System.ServiceModel.ClientBase<Client.ClientServiceReference.IEmployeeCreate>, Client.ClientServiceReference.IEmployeeCreate {
         
-        public EmployeeAddClient() {
+        public EmployeeCreateClient() {
         }
         
-        public EmployeeAddClient(string endpointConfigurationName) : 
+        public EmployeeCreateClient(string endpointConfigurationName) : 
                 base(endpointConfigurationName) {
         }
         
-        public EmployeeAddClient(string endpointConfigurationName, string remoteAddress) : 
+        public EmployeeCreateClient(string endpointConfigurationName, string remoteAddress) : 
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public EmployeeAddClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public EmployeeCreateClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public EmployeeAddClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public EmployeeCreateClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
         }
         
@@ -172,62 +178,70 @@ namespace Client.ClientServiceReference {
             return base.Channel.AddEmployeeAsync(emp);
         }
         
-        public void RemoveEmployee(string id) {
+        public void RemoveEmployee(int id) {
             base.Channel.RemoveEmployee(id);
         }
         
-        public System.Threading.Tasks.Task RemoveEmployeeAsync(string id) {
+        public System.Threading.Tasks.Task RemoveEmployeeAsync(int id) {
             return base.Channel.RemoveEmployeeAsync(id);
+        }
+        
+        public void ModifyDetails(int id) {
+            base.Channel.ModifyDetails(id);
+        }
+        
+        public System.Threading.Tasks.Task ModifyDetailsAsync(int id) {
+            return base.Channel.ModifyDetailsAsync(id);
         }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ClientServiceReference.IEmployeeRemark")]
-    public interface IEmployeeRemark {
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ClientServiceReference.IEmployeeRetrieve")]
+    public interface IEmployeeRetrieve {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeRemark/SearchById", ReplyAction="http://tempuri.org/IEmployeeRemark/SearchByIdResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeRetrieve/SearchById", ReplyAction="http://tempuri.org/IEmployeeRetrieve/SearchByIdResponse")]
         Client.ClientServiceReference.EmployeeManagement SearchById(int id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeRemark/SearchById", ReplyAction="http://tempuri.org/IEmployeeRemark/SearchByIdResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeRetrieve/SearchById", ReplyAction="http://tempuri.org/IEmployeeRetrieve/SearchByIdResponse")]
         System.Threading.Tasks.Task<Client.ClientServiceReference.EmployeeManagement> SearchByIdAsync(int id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeRemark/SearchByName", ReplyAction="http://tempuri.org/IEmployeeRemark/SearchByNameResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeRetrieve/SearchByName", ReplyAction="http://tempuri.org/IEmployeeRetrieve/SearchByNameResponse")]
         Client.ClientServiceReference.EmployeeManagement SearchByName(string name);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeRemark/SearchByName", ReplyAction="http://tempuri.org/IEmployeeRemark/SearchByNameResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeRetrieve/SearchByName", ReplyAction="http://tempuri.org/IEmployeeRetrieve/SearchByNameResponse")]
         System.Threading.Tasks.Task<Client.ClientServiceReference.EmployeeManagement> SearchByNameAsync(string name);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeRemark/GetAllEmployee", ReplyAction="http://tempuri.org/IEmployeeRemark/GetAllEmployeeResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeRetrieve/GetAllEmployee", ReplyAction="http://tempuri.org/IEmployeeRetrieve/GetAllEmployeeResponse")]
         Client.ClientServiceReference.EmployeeManagement[] GetAllEmployee();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeRemark/GetAllEmployee", ReplyAction="http://tempuri.org/IEmployeeRemark/GetAllEmployeeResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeRetrieve/GetAllEmployee", ReplyAction="http://tempuri.org/IEmployeeRetrieve/GetAllEmployeeResponse")]
         System.Threading.Tasks.Task<Client.ClientServiceReference.EmployeeManagement[]> GetAllEmployeeAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IEmployeeRemarkChannel : Client.ClientServiceReference.IEmployeeRemark, System.ServiceModel.IClientChannel {
+    public interface IEmployeeRetrieveChannel : Client.ClientServiceReference.IEmployeeRetrieve, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class EmployeeRemarkClient : System.ServiceModel.ClientBase<Client.ClientServiceReference.IEmployeeRemark>, Client.ClientServiceReference.IEmployeeRemark {
+    public partial class EmployeeRetrieveClient : System.ServiceModel.ClientBase<Client.ClientServiceReference.IEmployeeRetrieve>, Client.ClientServiceReference.IEmployeeRetrieve {
         
-        public EmployeeRemarkClient() {
+        public EmployeeRetrieveClient() {
         }
         
-        public EmployeeRemarkClient(string endpointConfigurationName) : 
+        public EmployeeRetrieveClient(string endpointConfigurationName) : 
                 base(endpointConfigurationName) {
         }
         
-        public EmployeeRemarkClient(string endpointConfigurationName, string remoteAddress) : 
+        public EmployeeRetrieveClient(string endpointConfigurationName, string remoteAddress) : 
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public EmployeeRemarkClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public EmployeeRetrieveClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public EmployeeRemarkClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public EmployeeRetrieveClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
         }
         

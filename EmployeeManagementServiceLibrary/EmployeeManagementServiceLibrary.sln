@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Client", "Client\Client.csp
 		{15B3E0D2-6217-493A-A690-158C497F5318} = {15B3E0D2-6217-493A-A690-158C497F5318}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeServiceFixture", "EmployeeServiceFixture\EmployeeServiceFixture.csproj", "{59A58E7F-4E2A-4667-8DCD-C640A2B4C91F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -22,6 +24,10 @@ Global
 		{EC8C8CC8-D1AE-487D-B8B7-A64F7A93C6C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC8C8CC8-D1AE-487D-B8B7-A64F7A93C6C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EC8C8CC8-D1AE-487D-B8B7-A64F7A93C6C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59A58E7F-4E2A-4667-8DCD-C640A2B4C91F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59A58E7F-4E2A-4667-8DCD-C640A2B4C91F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59A58E7F-4E2A-4667-8DCD-C640A2B4C91F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59A58E7F-4E2A-4667-8DCD-C640A2B4C91F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

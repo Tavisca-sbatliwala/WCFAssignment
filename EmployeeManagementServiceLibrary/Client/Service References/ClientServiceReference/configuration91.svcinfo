@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="beD0dS6bZzEbdHmvU7fP2KFZkdM=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="Gex920hOkkPR8WUq7GEnLNMNYRE=">
   <bindingConfigurations>
-    <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpBinding_IEmployeeAdd">
+    <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpBinding_IEmployeeCreate">
       <properties>
         <property path="/name" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>BasicHttpBinding_IEmployeeAdd</serializedValue>
+          <serializedValue>BasicHttpBinding_IEmployeeCreate</serializedValue>
         </property>
         <property path="/closeTimeout" isComplexType="false" isExplicitlyDefined="true" clrType="System.TimeSpan, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -110,10 +110,10 @@
         </property>
       </properties>
     </bindingConfiguration>
-    <bindingConfiguration bindingType="wsHttpBinding" name="WSHttpBinding_IEmployeeRemark">
+    <bindingConfiguration bindingType="wsHttpBinding" name="WSHttpBinding_IEmployeeRetrieve">
       <properties>
         <property path="/name" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>WSHttpBinding_IEmployeeRemark</serializedValue>
+          <serializedValue>WSHttpBinding_IEmployeeRetrieve</serializedValue>
         </property>
         <property path="/closeTimeout" isComplexType="false" isExplicitlyDefined="true" clrType="System.TimeSpan, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -236,7 +236,7 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="BasicHttpBinding_IEmployeeAdd" contract="ClientServiceReference.IEmployeeAdd" bindingType="basicHttpBinding" address="http://localhost:8733/Design_Time_Addresses/EmployeeManagementServiceLibrary/Service1/" bindingConfiguration="BasicHttpBinding_IEmployeeAdd">
+    <endpoint name="BasicHttpBinding_IEmployeeCreate" contract="ClientServiceReference.IEmployeeCreate" bindingType="basicHttpBinding" address="http://localhost:8733/Design_Time_Addresses/EmployeeManagementServiceLibrary/Service1/" bindingConfiguration="BasicHttpBinding_IEmployeeCreate">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>http://localhost:8733/Design_Time_Addresses/EmployeeManagementServiceLibrary/Service1/</serializedValue>
@@ -248,10 +248,10 @@
           <serializedValue>basicHttpBinding</serializedValue>
         </property>
         <property path="/bindingConfiguration" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>BasicHttpBinding_IEmployeeAdd</serializedValue>
+          <serializedValue>BasicHttpBinding_IEmployeeCreate</serializedValue>
         </property>
         <property path="/contract" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>ClientServiceReference.IEmployeeAdd</serializedValue>
+          <serializedValue>ClientServiceReference.IEmployeeCreate</serializedValue>
         </property>
         <property path="/headers" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.AddressHeaderCollectionElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>System.ServiceModel.Configuration.AddressHeaderCollectionElement</serializedValue>
@@ -311,7 +311,7 @@
           <serializedValue>False</serializedValue>
         </property>
         <property path="/name" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>BasicHttpBinding_IEmployeeAdd</serializedValue>
+          <serializedValue>BasicHttpBinding_IEmployeeCreate</serializedValue>
         </property>
         <property path="/kind" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -321,7 +321,7 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="WSHttpBinding_IEmployeeRemark" contract="ClientServiceReference.IEmployeeRemark" bindingType="wsHttpBinding" address="http://localhost:8733/Design_Time_Addresses/EmployeeManagementServiceLibrary/Service1/ws" bindingConfiguration="WSHttpBinding_IEmployeeRemark">
+    <endpoint name="WSHttpBinding_IEmployeeRetrieve" contract="ClientServiceReference.IEmployeeRetrieve" bindingType="wsHttpBinding" address="http://localhost:8733/Design_Time_Addresses/EmployeeManagementServiceLibrary/Service1/ws" bindingConfiguration="WSHttpBinding_IEmployeeRetrieve">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>http://localhost:8733/Design_Time_Addresses/EmployeeManagementServiceLibrary/Service1/ws</serializedValue>
@@ -333,10 +333,10 @@
           <serializedValue>wsHttpBinding</serializedValue>
         </property>
         <property path="/bindingConfiguration" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>WSHttpBinding_IEmployeeRemark</serializedValue>
+          <serializedValue>WSHttpBinding_IEmployeeRetrieve</serializedValue>
         </property>
         <property path="/contract" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>ClientServiceReference.IEmployeeRemark</serializedValue>
+          <serializedValue>ClientServiceReference.IEmployeeRetrieve</serializedValue>
         </property>
         <property path="/headers" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.AddressHeaderCollectionElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>System.ServiceModel.Configuration.AddressHeaderCollectionElement</serializedValue>
@@ -396,7 +396,7 @@
           <serializedValue>False</serializedValue>
         </property>
         <property path="/name" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>WSHttpBinding_IEmployeeRemark</serializedValue>
+          <serializedValue>WSHttpBinding_IEmployeeRetrieve</serializedValue>
         </property>
         <property path="/kind" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
