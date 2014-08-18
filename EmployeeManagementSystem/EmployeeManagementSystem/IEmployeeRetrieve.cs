@@ -5,14 +5,14 @@ using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EmployeeManagementServiceLibrary
+namespace EmployeeManagementSystem
 {
     [ServiceContract]
-    public interface IEmployeeRemark
+    public interface IEmployeeRetrieve
     {
         [OperationContract(Name = "SearchById")]
         EmployeeManagement GetEmployee(int id);
-        
+
         [OperationContract(Name = "SearchByName")]
         EmployeeManagement GetEmployee(string name);
         [OperationContract]
