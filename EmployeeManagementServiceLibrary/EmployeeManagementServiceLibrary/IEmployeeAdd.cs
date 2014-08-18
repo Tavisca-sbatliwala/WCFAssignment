@@ -11,16 +11,11 @@ namespace EmployeeManagementServiceLibrary
     public interface IEmployeeAdd
     {
         [OperationContract]
-        EmployeeManagement CreateEmployee(string id,string name,string comments);
+        EmployeeManagement CreateEmployee(int id,string name,string comments);
         [OperationContract]
         void AddEmployee(EmployeeManagement emp);
         [OperationContract]
         void RemoveEmployee(string id);
-        [OperationContract (Name="SearchById")]
-        EmployeeManagement GetEmployee(string id);
-        [OperationContract (Name="SearchByName")]
-        EmployeeManagement GetEmployee(string name);
-        [OperationContract]
-        List<EmployeeManagement> GetAllEmployee();
+        
     }
 }

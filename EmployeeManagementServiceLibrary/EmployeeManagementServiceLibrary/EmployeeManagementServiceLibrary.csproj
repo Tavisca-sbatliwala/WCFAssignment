@@ -47,6 +47,7 @@
     <Compile Include="EmployeeManagement.cs" />
     <Compile Include="EmployeeService.cs" />
     <Compile Include="IEmployeeAdd.cs" />
+    <Compile Include="IEmployeeRemark.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

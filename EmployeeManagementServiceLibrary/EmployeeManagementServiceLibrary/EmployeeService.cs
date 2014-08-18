@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 namespace EmployeeManagementServiceLibrary
 {
     [ServiceBehavior(InstanceContextMode=InstanceContextMode.Single)]
-    public class EmployeeService : IEmployeeAdd
+    public class EmployeeService : IEmployeeAdd ,IEmployeeRemark
     {
         EmployeeManagement empObj = new EmployeeManagement();
-        List<EmployeeManagement> list=new List<EmployeeManagement>();
+        public static List<EmployeeManagement> list=new List<EmployeeManagement>();
 
         public void AddEmployee(EmployeeManagement emp)
         {
@@ -28,19 +28,23 @@ namespace EmployeeManagementServiceLibrary
             list.Remove(list.Find(e => e.EmpID.Equals(id)));
         }
 
-
-        public EmployeeManagement GetEmployee(string id)
+        public EmployeeManagement GetEmployee(int id)
         {
             return list.Find(e => e.EmpID.Equals(id));
         }
 
-        public EmployeeManagement CreateEmployee(string id, string name, string comments)
+        public EmployeeManagement CreateEmployee(int id, string name, string comments)
         {
             empObj.EmpID = id;
             empObj.EmpName = name;
             empObj.Comments = comments;
             empObj.TimeSubmitted = DateTime.Now;
             return empObj;
+        }
+
+        public EmployeeManagement GetEmployee(string name)
+        {
+            return list.Find(e => e.EmpName.Equals(name));
         }
     }
 }

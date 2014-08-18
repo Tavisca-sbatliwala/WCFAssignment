@@ -26,7 +26,7 @@ namespace Client.ClientServiceReference {
         private string CommentsField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string EmpIDField;
+        private int EmpIDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string EmpNameField;
@@ -58,12 +58,12 @@ namespace Client.ClientServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string EmpID {
+        public int EmpID {
             get {
                 return this.EmpIDField;
             }
             set {
-                if ((object.ReferenceEquals(this.EmpIDField, value) != true)) {
+                if ((this.EmpIDField.Equals(value) != true)) {
                     this.EmpIDField = value;
                     this.RaisePropertyChanged("EmpID");
                 }
@@ -111,10 +111,10 @@ namespace Client.ClientServiceReference {
     public interface IEmployeeAdd {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeAdd/CreateEmployee", ReplyAction="http://tempuri.org/IEmployeeAdd/CreateEmployeeResponse")]
-        Client.ClientServiceReference.EmployeeManagement CreateEmployee(string id, string name, string comments);
+        Client.ClientServiceReference.EmployeeManagement CreateEmployee(int id, string name, string comments);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeAdd/CreateEmployee", ReplyAction="http://tempuri.org/IEmployeeAdd/CreateEmployeeResponse")]
-        System.Threading.Tasks.Task<Client.ClientServiceReference.EmployeeManagement> CreateEmployeeAsync(string id, string name, string comments);
+        System.Threading.Tasks.Task<Client.ClientServiceReference.EmployeeManagement> CreateEmployeeAsync(int id, string name, string comments);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeAdd/AddEmployee", ReplyAction="http://tempuri.org/IEmployeeAdd/AddEmployeeResponse")]
         void AddEmployee(Client.ClientServiceReference.EmployeeManagement emp);
@@ -127,18 +127,6 @@ namespace Client.ClientServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeAdd/RemoveEmployee", ReplyAction="http://tempuri.org/IEmployeeAdd/RemoveEmployeeResponse")]
         System.Threading.Tasks.Task RemoveEmployeeAsync(string id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeAdd/GetEmployee", ReplyAction="http://tempuri.org/IEmployeeAdd/GetEmployeeResponse")]
-        Client.ClientServiceReference.EmployeeManagement GetEmployee(string id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeAdd/GetEmployee", ReplyAction="http://tempuri.org/IEmployeeAdd/GetEmployeeResponse")]
-        System.Threading.Tasks.Task<Client.ClientServiceReference.EmployeeManagement> GetEmployeeAsync(string id);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeAdd/GetAllEmployee", ReplyAction="http://tempuri.org/IEmployeeAdd/GetAllEmployeeResponse")]
-        Client.ClientServiceReference.EmployeeManagement[] GetAllEmployee();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeAdd/GetAllEmployee", ReplyAction="http://tempuri.org/IEmployeeAdd/GetAllEmployeeResponse")]
-        System.Threading.Tasks.Task<Client.ClientServiceReference.EmployeeManagement[]> GetAllEmployeeAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -168,11 +156,11 @@ namespace Client.ClientServiceReference {
                 base(binding, remoteAddress) {
         }
         
-        public Client.ClientServiceReference.EmployeeManagement CreateEmployee(string id, string name, string comments) {
+        public Client.ClientServiceReference.EmployeeManagement CreateEmployee(int id, string name, string comments) {
             return base.Channel.CreateEmployee(id, name, comments);
         }
         
-        public System.Threading.Tasks.Task<Client.ClientServiceReference.EmployeeManagement> CreateEmployeeAsync(string id, string name, string comments) {
+        public System.Threading.Tasks.Task<Client.ClientServiceReference.EmployeeManagement> CreateEmployeeAsync(int id, string name, string comments) {
             return base.Channel.CreateEmployeeAsync(id, name, comments);
         }
         
@@ -191,13 +179,72 @@ namespace Client.ClientServiceReference {
         public System.Threading.Tasks.Task RemoveEmployeeAsync(string id) {
             return base.Channel.RemoveEmployeeAsync(id);
         }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ClientServiceReference.IEmployeeRemark")]
+    public interface IEmployeeRemark {
         
-        public Client.ClientServiceReference.EmployeeManagement GetEmployee(string id) {
-            return base.Channel.GetEmployee(id);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeRemark/SearchById", ReplyAction="http://tempuri.org/IEmployeeRemark/SearchByIdResponse")]
+        Client.ClientServiceReference.EmployeeManagement SearchById(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeRemark/SearchById", ReplyAction="http://tempuri.org/IEmployeeRemark/SearchByIdResponse")]
+        System.Threading.Tasks.Task<Client.ClientServiceReference.EmployeeManagement> SearchByIdAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeRemark/SearchByName", ReplyAction="http://tempuri.org/IEmployeeRemark/SearchByNameResponse")]
+        Client.ClientServiceReference.EmployeeManagement SearchByName(string name);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeRemark/SearchByName", ReplyAction="http://tempuri.org/IEmployeeRemark/SearchByNameResponse")]
+        System.Threading.Tasks.Task<Client.ClientServiceReference.EmployeeManagement> SearchByNameAsync(string name);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeRemark/GetAllEmployee", ReplyAction="http://tempuri.org/IEmployeeRemark/GetAllEmployeeResponse")]
+        Client.ClientServiceReference.EmployeeManagement[] GetAllEmployee();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeRemark/GetAllEmployee", ReplyAction="http://tempuri.org/IEmployeeRemark/GetAllEmployeeResponse")]
+        System.Threading.Tasks.Task<Client.ClientServiceReference.EmployeeManagement[]> GetAllEmployeeAsync();
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IEmployeeRemarkChannel : Client.ClientServiceReference.IEmployeeRemark, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class EmployeeRemarkClient : System.ServiceModel.ClientBase<Client.ClientServiceReference.IEmployeeRemark>, Client.ClientServiceReference.IEmployeeRemark {
+        
+        public EmployeeRemarkClient() {
         }
         
-        public System.Threading.Tasks.Task<Client.ClientServiceReference.EmployeeManagement> GetEmployeeAsync(string id) {
-            return base.Channel.GetEmployeeAsync(id);
+        public EmployeeRemarkClient(string endpointConfigurationName) : 
+                base(endpointConfigurationName) {
+        }
+        
+        public EmployeeRemarkClient(string endpointConfigurationName, string remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public EmployeeRemarkClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public EmployeeRemarkClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(binding, remoteAddress) {
+        }
+        
+        public Client.ClientServiceReference.EmployeeManagement SearchById(int id) {
+            return base.Channel.SearchById(id);
+        }
+        
+        public System.Threading.Tasks.Task<Client.ClientServiceReference.EmployeeManagement> SearchByIdAsync(int id) {
+            return base.Channel.SearchByIdAsync(id);
+        }
+        
+        public Client.ClientServiceReference.EmployeeManagement SearchByName(string name) {
+            return base.Channel.SearchByName(name);
+        }
+        
+        public System.Threading.Tasks.Task<Client.ClientServiceReference.EmployeeManagement> SearchByNameAsync(string name) {
+            return base.Channel.SearchByNameAsync(name);
         }
         
         public Client.ClientServiceReference.EmployeeManagement[] GetAllEmployee() {

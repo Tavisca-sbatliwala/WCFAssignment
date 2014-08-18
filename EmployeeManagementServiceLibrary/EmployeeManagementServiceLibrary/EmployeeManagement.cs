@@ -11,7 +11,7 @@ namespace EmployeeManagementServiceLibrary
     public class EmployeeManagement
     {
         [DataMember]
-        public string EmpID {get; set;}
+        public int EmpID {get; set;}
         [DataMember]
         public string EmpName { get; set; }
         [DataMember]
