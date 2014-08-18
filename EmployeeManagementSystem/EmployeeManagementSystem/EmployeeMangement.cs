@@ -15,7 +15,7 @@ namespace EmployeeManagementSystem
         [DataMember]
         public string EmpName { get; set; }
         [DataMember]
-        public string Comments { get; set; }
+        public string Comment { get; set; }
         [DataMember]
         public DateTime TimeSubmitted { get; set; }
 

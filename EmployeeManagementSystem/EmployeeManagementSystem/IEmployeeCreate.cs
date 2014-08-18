@@ -12,13 +12,14 @@ namespace EmployeeManagementSystem
     public interface IEmployeeCreate
     {
         [OperationContract]
-        EmployeeManagement CreateEmployee(int id,string name,string comments);
+        EmployeeManagement CreateEmployee(int id,string name,string comment);
         [OperationContract]
         void AddEmployee(EmployeeManagement emp);
         [OperationContract]
         void RemoveEmployee(int id);
         [OperationContract]
-        void ModifyDetails(int id);
-        
+        EmployeeManagement ModifyRemark(int id,string comment);
+        void ClearList();
+
     }
 }

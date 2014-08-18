@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
+using System.ServiceModel.Channels;
 using System.ServiceModel.Web;
 using System.Text;
 
@@ -36,9 +37,10 @@ namespace EmployeeManagementSystem
 
         public EmployeeManagement CreateEmployee(int id, string name, string comments)
         {
+
             empObj.EmpID = id;
             empObj.EmpName = name;
-            empObj.Comments = comments;
+            empObj.Comment = comments;
             empObj.TimeSubmitted = DateTime.Now;
             return empObj;
         }
@@ -49,9 +51,30 @@ namespace EmployeeManagementSystem
         }
 
 
-        void IEmployeeCreate.ModifyDetails(int id)
+        public EmployeeManagement ModifyRemark(int id,string comment)
         {
-            //var = _emplist.Find(e => e.EmpID.Equals(id));
+            var tempEmp = _emplist.Find(e => e.EmpID.Equals(id));
+            if (tempEmp == null)
+            {
+                throw FaultException.CreateFault(MessageFault.CreateFault(new FaultCode("100"), "Employee does not exist"));
+            }
+            else
+            {
+                tempEmp.Comment = comment;
+                return tempEmp;
+            }
+        }
+
+        List<EmployeeManagement> IEmployeeRetrieve.GetAllEmployeeWithRemark()
+        {
+            return _emplist.FindAll(e => e.Comment != null);
+        }
+
+
+        public void ClearList()
+        {
+            var count=_emplist.Count();
+            _emplist.RemoveRange(0, count);
         }
     }
 }

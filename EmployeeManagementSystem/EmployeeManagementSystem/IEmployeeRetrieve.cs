@@ -12,10 +12,11 @@ namespace EmployeeManagementSystem
     {
         [OperationContract(Name = "SearchById")]
         EmployeeManagement GetEmployee(int id);
-
         [OperationContract(Name = "SearchByName")]
         EmployeeManagement GetEmployee(string name);
         [OperationContract]
         List<EmployeeManagement> GetAllEmployee();
+        [OperationContract]
+        List<EmployeeManagement> GetAllEmployeeWithRemark();
     }
 }
