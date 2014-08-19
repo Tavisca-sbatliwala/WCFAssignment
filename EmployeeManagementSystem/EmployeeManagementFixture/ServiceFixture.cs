@@ -309,5 +309,30 @@ namespace EmployeeManagementFixture
             createClient.AddEmployee(emp);
         }
 
+
+        [TestMethod]
+        [DeploymentItem(@"D:\WCFAssignment\EmployeeManagementSystem\EmployeeManagementFixture\EmployeeXMLData.xml")]
+        [DataSource("Microsoft.VisualStudio.TestTools.DataSource.XML",
+                           @"D:\WCFAssignment\EmployeeManagementSystem\EmployeeManagementFixture\EmployeeXMLData.xml",
+                           "AddEmployee",
+                            DataAccessMethod.Sequential)]
+        public void CreateEmployeeUsingDataSource()
+        {
+            var createClient = new EmployeeCreateClient("BasicHttpBinding_IEmployeeCreate");
+            var retrieveClient = new EmployeeRetrieveClient("WSHttpBinding_IEmployeeRetrieve");
+            int empId = Int32.Parse((string)testContextInstance.DataRow["EmployeeId"]);
+            string empName = testContextInstance.DataRow["EmployeeName"].ToString();
+            string empComment = testContextInstance.DataRow["EmployeeComment"].ToString();
+            var emp = createClient.CreateEmployee(empId,empName,empComment);
+            createClient.AddEmployee(emp);
+            
+            var empOneDetails = retrieveClient.SearchById(empId);
+
+            Assert.AreEqual(1, empOneDetails.EmpID);
+            Assert.AreEqual("saif", empOneDetails.EmpName);
+            Assert.AreEqual("Hello", empOneDetails.Comment);
+
+        }
+
     }
 }
