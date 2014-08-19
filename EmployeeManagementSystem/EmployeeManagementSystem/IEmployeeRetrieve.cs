@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace EmployeeManagementSystem
 {
+
     [ServiceContract]
     public interface IEmployeeRetrieve
     {

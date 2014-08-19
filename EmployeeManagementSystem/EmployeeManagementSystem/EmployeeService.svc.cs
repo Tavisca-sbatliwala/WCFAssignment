@@ -72,20 +72,20 @@ namespace EmployeeManagementSystem
         public EmployeeManagement CreateEmployee(int id, string name, string comments)
         {
             EmployeeAlreadyExists fault = new EmployeeAlreadyExists();
-            if (!_emplist.Any(e => e.EmpID == id))
+            if (_emplist.Any(e => e.EmpID == id))
+            {
+                fault.FaultId = 101;
+                fault.FaultMessage = "Employee Already Exists";
+                fault.FaultDetail = "Employee Already Present in the List";
+                throw new FaultException<EmployeeAlreadyExists>(fault, "Employee Already Exists");
+            }
+            else
             {
                 empObj.EmpID = id;
                 empObj.EmpName = name;
                 empObj.Comment = comments;
                 empObj.TimeSubmitted = DateTime.Now;
                 return empObj;
-            }
-            else
-            {
-                fault.FaultId = 101;
-                fault.FaultMessage = "Employee Already Exists";
-                fault.FaultDetail = "Employee Already Present in the List";
-                throw new FaultException<EmployeeAlreadyExists>(fault, "Employee Already Exists");
             }
         }
 
@@ -105,7 +105,7 @@ namespace EmployeeManagementSystem
             }
         }
 
-        public EmployeeManagement ModifyRemark(int id, string comment)
+        public EmployeeManagement ModifyComment(int id, string comment)
         {
             EmployeeDoesNotExists fault = new EmployeeDoesNotExists();
             if (_emplist.Any(e => e.EmpID == id))
@@ -139,10 +139,10 @@ namespace EmployeeManagementSystem
                 throw new FaultException<EmployeeDoesNotExists>(fault, "Employee Does not exits");
             }
         }
+       
         public void ClearList()
         {
-            var count = _emplist.Count();
-            _emplist.RemoveRange(0, count);
+            _emplist.Clear();
         }
     }
 }

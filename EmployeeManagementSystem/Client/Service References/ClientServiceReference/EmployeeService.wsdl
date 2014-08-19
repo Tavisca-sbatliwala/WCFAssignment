@@ -358,14 +358,20 @@
   <wsdl:message name="IEmployeeCreate_RemoveEmployee_EmployeeDoesNotExistsFault_FaultMessage">
     <wsdl:part xmlns:q3="http://schemas.datacontract.org/2004/07/EmployeeManagementSystem" name="detail" element="q3:EmployeeDoesNotExists" />
   </wsdl:message>
-  <wsdl:message name="IEmployeeCreate_ModifyRemark_InputMessage">
-    <wsdl:part name="parameters" element="tns:ModifyRemark" />
+  <wsdl:message name="IEmployeeCreate_ModifyComment_InputMessage">
+    <wsdl:part name="parameters" element="tns:ModifyComment" />
   </wsdl:message>
-  <wsdl:message name="IEmployeeCreate_ModifyRemark_OutputMessage">
-    <wsdl:part name="parameters" element="tns:ModifyRemarkResponse" />
+  <wsdl:message name="IEmployeeCreate_ModifyComment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ModifyCommentResponse" />
   </wsdl:message>
-  <wsdl:message name="IEmployeeCreate_ModifyRemark_EmployeeAlreadyExistsFault_FaultMessage">
-    <wsdl:part xmlns:q4="http://schemas.datacontract.org/2004/07/EmployeeManagementSystem" name="detail" element="q4:EmployeeAlreadyExists" />
+  <wsdl:message name="IEmployeeCreate_ModifyComment_EmployeeDoesNotExistsFault_FaultMessage">
+    <wsdl:part xmlns:q4="http://schemas.datacontract.org/2004/07/EmployeeManagementSystem" name="detail" element="q4:EmployeeDoesNotExists" />
+  </wsdl:message>
+  <wsdl:message name="IEmployeeCreate_ClearList_InputMessage">
+    <wsdl:part name="parameters" element="tns:ClearList" />
+  </wsdl:message>
+  <wsdl:message name="IEmployeeCreate_ClearList_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ClearListResponse" />
   </wsdl:message>
   <wsdl:message name="IEmployeeRetrieve_SearchById_InputMessage">
     <wsdl:part name="parameters" element="tns:SearchById" />
@@ -419,10 +425,14 @@
       <wsdl:output wsaw:Action="http://tempuri.org/IEmployeeCreate/RemoveEmployeeResponse" message="tns:IEmployeeCreate_RemoveEmployee_OutputMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IEmployeeCreate/RemoveEmployeeEmployeeDoesNotExistsFault" name="EmployeeDoesNotExistsFault" message="tns:IEmployeeCreate_RemoveEmployee_EmployeeDoesNotExistsFault_FaultMessage" />
     </wsdl:operation>
-    <wsdl:operation name="ModifyRemark">
-      <wsdl:input wsaw:Action="http://tempuri.org/IEmployeeCreate/ModifyRemark" message="tns:IEmployeeCreate_ModifyRemark_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IEmployeeCreate/ModifyRemarkResponse" message="tns:IEmployeeCreate_ModifyRemark_OutputMessage" />
-      <wsdl:fault wsaw:Action="http://tempuri.org/IEmployeeCreate/ModifyRemarkEmployeeAlreadyExistsFault" name="EmployeeAlreadyExistsFault" message="tns:IEmployeeCreate_ModifyRemark_EmployeeAlreadyExistsFault_FaultMessage" />
+    <wsdl:operation name="ModifyComment">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEmployeeCreate/ModifyComment" message="tns:IEmployeeCreate_ModifyComment_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEmployeeCreate/ModifyCommentResponse" message="tns:IEmployeeCreate_ModifyComment_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IEmployeeCreate/ModifyCommentEmployeeDoesNotExistsFault" name="EmployeeDoesNotExistsFault" message="tns:IEmployeeCreate_ModifyComment_EmployeeDoesNotExistsFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ClearList">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEmployeeCreate/ClearList" message="tns:IEmployeeCreate_ClearList_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEmployeeCreate/ClearListResponse" message="tns:IEmployeeCreate_ClearList_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IEmployeeRetrieve">
@@ -485,17 +495,26 @@
         <soap:fault use="literal" name="EmployeeDoesNotExistsFault" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
-    <wsdl:operation name="ModifyRemark">
-      <soap:operation soapAction="http://tempuri.org/IEmployeeCreate/ModifyRemark" style="document" />
+    <wsdl:operation name="ModifyComment">
+      <soap:operation soapAction="http://tempuri.org/IEmployeeCreate/ModifyComment" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
-      <wsdl:fault name="EmployeeAlreadyExistsFault">
-        <soap:fault use="literal" name="EmployeeAlreadyExistsFault" namespace="" />
+      <wsdl:fault name="EmployeeDoesNotExistsFault">
+        <soap:fault use="literal" name="EmployeeDoesNotExistsFault" namespace="" />
       </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ClearList">
+      <soap:operation soapAction="http://tempuri.org/IEmployeeCreate/ClearList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="WSHttpBinding_IEmployeeRetrieve" type="tns:IEmployeeRetrieve">

@@ -41,7 +41,7 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
-  <xs:element name="ModifyRemark">
+  <xs:element name="ModifyComment">
     <xs:complexType>
       <xs:sequence>
         <xs:element minOccurs="0" name="id" type="xs:int" />
@@ -49,11 +49,21 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="ModifyRemarkResponse">
+  <xs:element name="ModifyCommentResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/EmployeeManagementSystem" minOccurs="0" name="ModifyRemarkResult" nillable="true" type="q3:EmployeeManagement" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/EmployeeManagementSystem" minOccurs="0" name="ModifyCommentResult" nillable="true" type="q3:EmployeeManagement" />
       </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ClearList">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ClearListResponse">
+    <xs:complexType>
+      <xs:sequence />
     </xs:complexType>
   </xs:element>
   <xs:element name="SearchById">

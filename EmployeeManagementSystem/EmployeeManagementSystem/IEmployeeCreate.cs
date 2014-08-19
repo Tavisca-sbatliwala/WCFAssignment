@@ -24,9 +24,10 @@ namespace EmployeeManagementSystem
         void RemoveEmployee(int id);
         
         [OperationContract]
-        [FaultContract(typeof(EmployeeAlreadyExists))]
-        EmployeeManagement ModifyRemark(int id,string comment);
+        [FaultContract(typeof(EmployeeDoesNotExists))]
+        EmployeeManagement ModifyComment(int id,string comment);
         
+        [OperationContract]
         void ClearList();
 
     }

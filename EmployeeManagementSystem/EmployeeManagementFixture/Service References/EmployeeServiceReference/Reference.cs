@@ -192,12 +192,18 @@ namespace EmployeeManagementFixture.EmployeeServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeCreate/RemoveEmployee", ReplyAction="http://tempuri.org/IEmployeeCreate/RemoveEmployeeResponse")]
         System.Threading.Tasks.Task RemoveEmployeeAsync(int id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeCreate/ModifyRemark", ReplyAction="http://tempuri.org/IEmployeeCreate/ModifyRemarkResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(EmployeeManagementFixture.EmployeeServiceReference.EmployeeAlreadyExists), Action="http://tempuri.org/IEmployeeCreate/ModifyRemarkEmployeeAlreadyExistsFault", Name="EmployeeAlreadyExists", Namespace="http://schemas.datacontract.org/2004/07/EmployeeManagementSystem")]
-        EmployeeManagementSystem.EmployeeManagement ModifyRemark(int id, string comment);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeCreate/ModifyComment", ReplyAction="http://tempuri.org/IEmployeeCreate/ModifyCommentResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(EmployeeManagementFixture.EmployeeServiceReference.EmployeeDoesNotExists), Action="http://tempuri.org/IEmployeeCreate/ModifyCommentEmployeeDoesNotExistsFault", Name="EmployeeDoesNotExists", Namespace="http://schemas.datacontract.org/2004/07/EmployeeManagementSystem")]
+        EmployeeManagementSystem.EmployeeManagement ModifyComment(int id, string comment);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeCreate/ModifyRemark", ReplyAction="http://tempuri.org/IEmployeeCreate/ModifyRemarkResponse")]
-        System.Threading.Tasks.Task<EmployeeManagementSystem.EmployeeManagement> ModifyRemarkAsync(int id, string comment);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeCreate/ModifyComment", ReplyAction="http://tempuri.org/IEmployeeCreate/ModifyCommentResponse")]
+        System.Threading.Tasks.Task<EmployeeManagementSystem.EmployeeManagement> ModifyCommentAsync(int id, string comment);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeCreate/ClearList", ReplyAction="http://tempuri.org/IEmployeeCreate/ClearListResponse")]
+        void ClearList();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeCreate/ClearList", ReplyAction="http://tempuri.org/IEmployeeCreate/ClearListResponse")]
+        System.Threading.Tasks.Task ClearListAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -251,12 +257,20 @@ namespace EmployeeManagementFixture.EmployeeServiceReference {
             return base.Channel.RemoveEmployeeAsync(id);
         }
         
-        public EmployeeManagementSystem.EmployeeManagement ModifyRemark(int id, string comment) {
-            return base.Channel.ModifyRemark(id, comment);
+        public EmployeeManagementSystem.EmployeeManagement ModifyComment(int id, string comment) {
+            return base.Channel.ModifyComment(id, comment);
         }
         
-        public System.Threading.Tasks.Task<EmployeeManagementSystem.EmployeeManagement> ModifyRemarkAsync(int id, string comment) {
-            return base.Channel.ModifyRemarkAsync(id, comment);
+        public System.Threading.Tasks.Task<EmployeeManagementSystem.EmployeeManagement> ModifyCommentAsync(int id, string comment) {
+            return base.Channel.ModifyCommentAsync(id, comment);
+        }
+        
+        public void ClearList() {
+            base.Channel.ClearList();
+        }
+        
+        public System.Threading.Tasks.Task ClearListAsync() {
+            return base.Channel.ClearListAsync();
         }
     }
     

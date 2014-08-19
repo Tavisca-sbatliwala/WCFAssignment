@@ -61,7 +61,7 @@ namespace Client
                             var id = int.Parse(Console.ReadLine());
                             Console.WriteLine("Enter Comment ");
                             var modifyComment = Console.ReadLine();
-                            _clientcreate.ModifyRemark(id, modifyComment);
+                            _clientcreate.ModifyComment(id, modifyComment);
                             Console.WriteLine("Comment modified/Added Successfully..");
                         }
                         catch (FaultException<EmployeeDoesNotExists> Fex)
