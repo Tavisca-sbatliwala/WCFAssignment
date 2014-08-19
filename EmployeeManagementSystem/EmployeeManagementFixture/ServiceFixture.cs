@@ -6,7 +6,6 @@ using System.ServiceModel;
 
 namespace EmployeeManagementFixture
 {
-
     /// <summary>
     /// Specifications
     /// 1.Add and Retrieve
