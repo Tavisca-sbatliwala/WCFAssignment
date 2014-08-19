@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using EmployeeManagementFixture.EmployeeServiceReference;
 using EmployeeManagementSystem;
 using System.ServiceModel;
+using System.Data;
 
 namespace EmployeeManagementFixture
 {
@@ -21,6 +22,13 @@ namespace EmployeeManagementFixture
     [TestClass]
     public class ServiceFixture
     {
+        private TestContext testContextInstance;
+
+        public TestContext TestContext
+        {
+            get { return testContextInstance; }
+            set { testContextInstance = value; }
+        }
         /// <summary>
         /// It Clear the Employee List Before Running Each Test Cases
         /// </summary>
@@ -274,6 +282,31 @@ namespace EmployeeManagementFixture
             var empOne = createClient.CreateEmployee(1, "saifuddin", "Hello..Again..");
             createClient.AddEmployee(empOne);
             
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(FaultException<EmployeeServiceFault>))]
+        public void CreateEmployeeWithInvalidEmployeeID()
+        {
+
+            var createClient = new EmployeeCreateClient("BasicHttpBinding_IEmployeeCreate");
+            var retrieveClient = new EmployeeRetrieveClient("WSHttpBinding_IEmployeeRetrieve");
+
+            var emp = createClient.CreateEmployee(-1, "saifuddin", "Hello..Again..");
+            createClient.AddEmployee(emp);
+        }
+
+
+        [TestMethod]
+        [ExpectedException(typeof(FaultException<EmployeeServiceFault>))]
+        public void CreateEmployeeWithInvalidEmployeeName()
+        {
+
+            var createClient = new EmployeeCreateClient("BasicHttpBinding_IEmployeeCreate");
+            var retrieveClient = new EmployeeRetrieveClient("WSHttpBinding_IEmployeeRetrieve");
+
+            var emp = createClient.CreateEmployee(1, "sai12321", "Hello..Again..");
+            createClient.AddEmployee(emp);
         }
 
     }
