@@ -7,7 +7,7 @@ using System.ServiceModel;
 namespace EmployeeManagementFixture
 {
     /// <summary>
-    /// Specifications
+    /// Specifications: Test Scenarios
     /// 1.Add and Retrieve
     /// 2.Add it again
     /// 3.Add remark for existing employee
@@ -210,7 +210,7 @@ namespace EmployeeManagementFixture
         /// </summary>
 
         [TestMethod]
-        [ExpectedException(typeof(FaultException<EmployeeManagementFixture.EmployeeServiceReference.EmployeeServiceFault>))]
+        [ExpectedException(typeof(FaultException<EmployeeServiceFault>))]
         public void ModifyCommentWhenEmployeeNotExits()
         {
 
@@ -228,7 +228,7 @@ namespace EmployeeManagementFixture
         /// </summary>
 
         [TestMethod]
-        [ExpectedException(typeof(FaultException<EmployeeManagementFixture.EmployeeServiceReference.EmployeeServiceFault>))]
+        [ExpectedException(typeof(FaultException<EmployeeServiceFault>))]
         public void GetEmployeeWhenNoEmployeeExits()
         {
 
@@ -245,7 +245,7 @@ namespace EmployeeManagementFixture
         /// </summary>
 
         [TestMethod]
-        [ExpectedException(typeof(FaultException<EmployeeManagementFixture.EmployeeServiceReference.EmployeeServiceFault>))]
+        [ExpectedException(typeof(FaultException<EmployeeServiceFault>))]
         public void RemoveEmployeeWhenEmployeeNotExists()
         {
 
@@ -261,7 +261,7 @@ namespace EmployeeManagementFixture
         /// </summary>
 
         [TestMethod]
-        [ExpectedException(typeof(FaultException<EmployeeManagementFixture.EmployeeServiceReference.EmployeeServiceFault>))]
+        [ExpectedException(typeof(FaultException<EmployeeServiceFault>))]
         public void CreateEmployeeWhenItsAlreadyExists()
         {
 
