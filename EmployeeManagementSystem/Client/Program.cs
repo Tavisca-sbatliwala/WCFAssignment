@@ -45,11 +45,11 @@ namespace Client
                             _clientcreate.AddEmployee(emp);
                             Console.WriteLine("Employee Details Added Successfully...");
                         }
-                        catch (FaultException<EmployeeAlreadyExists> Fex)
+                        catch (FaultException<EmployeeServiceFault> ex)
                         {
-                            Console.WriteLine("FaultId::" + Fex.Detail.FaultId);
-                            Console.WriteLine("FaultMessage::" + Fex.Detail.FaultMessage + Environment.NewLine);
-                            Console.WriteLine("FaultDetails::" + Environment.NewLine + Fex.Detail.FaultDetail);
+                            Console.WriteLine("FaultId::" + ex.Detail.FaultId);
+                            Console.WriteLine("FaultMessage::" + ex.Detail.FaultMessage + Environment.NewLine);
+                            Console.WriteLine("FaultDetails::" + Environment.NewLine + ex.Detail.FaultDetail);
                         }
 
                         break;
@@ -64,11 +64,11 @@ namespace Client
                             _clientcreate.ModifyComment(id, modifyComment);
                             Console.WriteLine("Comment modified/Added Successfully..");
                         }
-                        catch (FaultException<EmployeeDoesNotExists> Fex)
+                        catch (FaultException<EmployeeServiceFault> ex)
                         {
-                            Console.WriteLine("FaultId::" + Fex.Detail.FaultId);
-                            Console.WriteLine("FaultMessage::" + Fex.Detail.FaultMessage + Environment.NewLine);
-                            Console.WriteLine("FaultDetails::" + Environment.NewLine + Fex.Detail.FaultDetail);
+                            Console.WriteLine("FaultId::" + ex.Detail.FaultId);
+                            Console.WriteLine("FaultMessage::" + ex.Detail.FaultMessage + Environment.NewLine);
+                            Console.WriteLine("FaultDetails::" + Environment.NewLine + ex.Detail.FaultDetail);
                         }
 
                         break;
@@ -82,11 +82,11 @@ namespace Client
                             Console.WriteLine(getEmp.EmpID + " " + getEmp.EmpName + " " + getEmp.Comment + " " + getEmp.TimeSubmitted);
                             Console.WriteLine("Employee Details Found...");
                         }
-                        catch (FaultException<EmployeeDoesNotExists> Fex)
+                        catch (FaultException<EmployeeServiceFault> ex)
                         {
-                            Console.WriteLine("FaultId::" + Fex.Detail.FaultId);
-                            Console.WriteLine("FaultMessage::" + Fex.Detail.FaultMessage + Environment.NewLine);
-                            Console.WriteLine("FaultDetails::" + Environment.NewLine + Fex.Detail.FaultDetail);
+                            Console.WriteLine("FaultId::" + ex.Detail.FaultId);
+                            Console.WriteLine("FaultMessage::" + ex.Detail.FaultMessage + Environment.NewLine);
+                            Console.WriteLine("FaultDetails::" + Environment.NewLine + ex.Detail.FaultDetail);
                         }
 
                         break;
@@ -100,11 +100,11 @@ namespace Client
                             Console.WriteLine(getEmp1.EmpID + " " + getEmp1.EmpName + " " + getEmp1.Comment + " " + getEmp1.TimeSubmitted);
                             Console.WriteLine("Employee Details Found...");
                         }
-                        catch (FaultException<EmployeeDoesNotExists> Fex)
+                        catch (FaultException<EmployeeServiceFault> ex)
                         {
-                            Console.WriteLine("FaultId::" + Fex.Detail.FaultId);
-                            Console.WriteLine("FaultMessage::" + Fex.Detail.FaultMessage + Environment.NewLine);
-                            Console.WriteLine("FaultDetails::" + Environment.NewLine + Fex.Detail.FaultDetail);
+                            Console.WriteLine("FaultId::" + ex.Detail.FaultId);
+                            Console.WriteLine("FaultMessage::" + ex.Detail.FaultMessage + Environment.NewLine);
+                            Console.WriteLine("FaultDetails::" + Environment.NewLine + ex.Detail.FaultDetail);
                         }
 
                         break;
@@ -120,11 +120,11 @@ namespace Client
                                 Console.WriteLine(em.EmpID + " " + em.EmpName + " " + em.Comment + " " + em.TimeSubmitted);
                             }
                         }
-                        catch (FaultException<EmployeeDoesNotExists> Fex)
+                        catch (FaultException<EmployeeServiceFault> ex)
                         {
-                            Console.WriteLine("FaultId::" + Fex.Detail.FaultId);
-                            Console.WriteLine("FaultMessage::" + Fex.Detail.FaultMessage + Environment.NewLine);
-                            Console.WriteLine("FaultDetails::" + Environment.NewLine + Fex.Detail.FaultDetail);
+                            Console.WriteLine("FaultId::" + ex.Detail.FaultId);
+                            Console.WriteLine("FaultMessage::" + ex.Detail.FaultMessage + Environment.NewLine);
+                            Console.WriteLine("FaultDetails::" + Environment.NewLine + ex.Detail.FaultDetail);
                         }
 
                         break;
@@ -137,11 +137,11 @@ namespace Client
                             _clientcreate.RemoveEmployee(removeId);
                             Console.WriteLine("Employee Details Removed Successfully...");
                         }
-                        catch (FaultException<EmployeeDoesNotExists> Fex)
+                        catch (FaultException<EmployeeServiceFault> ex)
                         {
-                            Console.WriteLine("FaultId::" + Fex.Detail.FaultId);
-                            Console.WriteLine("FaultMessage::" + Fex.Detail.FaultMessage + Environment.NewLine);
-                            Console.WriteLine("FaultDetails::" + Environment.NewLine + Fex.Detail.FaultDetail);
+                            Console.WriteLine("FaultId::" + ex.Detail.FaultId);
+                            Console.WriteLine("FaultMessage::" + ex.Detail.FaultMessage + Environment.NewLine);
+                            Console.WriteLine("FaultDetails::" + Environment.NewLine + ex.Detail.FaultDetail);
                         }
                         break;
 

@@ -108,86 +108,9 @@ namespace Client.ClientServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="EmployeeAlreadyExists", Namespace="http://schemas.datacontract.org/2004/07/EmployeeManagementSystem")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="EmployeeServiceFault", Namespace="http://schemas.datacontract.org/2004/07/EmployeeManagementSystem")]
     [System.SerializableAttribute()]
-    public partial class EmployeeAlreadyExists : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string FaultDetailField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int FaultIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string FaultMessageField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string FaultDetail {
-            get {
-                return this.FaultDetailField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.FaultDetailField, value) != true)) {
-                    this.FaultDetailField = value;
-                    this.RaisePropertyChanged("FaultDetail");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int FaultId {
-            get {
-                return this.FaultIdField;
-            }
-            set {
-                if ((this.FaultIdField.Equals(value) != true)) {
-                    this.FaultIdField = value;
-                    this.RaisePropertyChanged("FaultId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string FaultMessage {
-            get {
-                return this.FaultMessageField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.FaultMessageField, value) != true)) {
-                    this.FaultMessageField = value;
-                    this.RaisePropertyChanged("FaultMessage");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="EmployeeDoesNotExists", Namespace="http://schemas.datacontract.org/2004/07/EmployeeManagementSystem")]
-    [System.SerializableAttribute()]
-    public partial class EmployeeDoesNotExists : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class EmployeeServiceFault : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
@@ -265,28 +188,28 @@ namespace Client.ClientServiceReference {
     public interface IEmployeeCreate {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeCreate/CreateEmployee", ReplyAction="http://tempuri.org/IEmployeeCreate/CreateEmployeeResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(Client.ClientServiceReference.EmployeeAlreadyExists), Action="http://tempuri.org/IEmployeeCreate/CreateEmployeeEmployeeAlreadyExistsFault", Name="EmployeeAlreadyExists", Namespace="http://schemas.datacontract.org/2004/07/EmployeeManagementSystem")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Client.ClientServiceReference.EmployeeServiceFault), Action="http://tempuri.org/IEmployeeCreate/CreateEmployeeEmployeeServiceFaultFault", Name="EmployeeServiceFault", Namespace="http://schemas.datacontract.org/2004/07/EmployeeManagementSystem")]
         Client.ClientServiceReference.EmployeeManagement CreateEmployee(int id, string name, string comment);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeCreate/CreateEmployee", ReplyAction="http://tempuri.org/IEmployeeCreate/CreateEmployeeResponse")]
         System.Threading.Tasks.Task<Client.ClientServiceReference.EmployeeManagement> CreateEmployeeAsync(int id, string name, string comment);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeCreate/AddEmployee", ReplyAction="http://tempuri.org/IEmployeeCreate/AddEmployeeResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(Client.ClientServiceReference.EmployeeAlreadyExists), Action="http://tempuri.org/IEmployeeCreate/AddEmployeeEmployeeAlreadyExistsFault", Name="EmployeeAlreadyExists", Namespace="http://schemas.datacontract.org/2004/07/EmployeeManagementSystem")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Client.ClientServiceReference.EmployeeServiceFault), Action="http://tempuri.org/IEmployeeCreate/AddEmployeeEmployeeServiceFaultFault", Name="EmployeeServiceFault", Namespace="http://schemas.datacontract.org/2004/07/EmployeeManagementSystem")]
         void AddEmployee(Client.ClientServiceReference.EmployeeManagement emp);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeCreate/AddEmployee", ReplyAction="http://tempuri.org/IEmployeeCreate/AddEmployeeResponse")]
         System.Threading.Tasks.Task AddEmployeeAsync(Client.ClientServiceReference.EmployeeManagement emp);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeCreate/RemoveEmployee", ReplyAction="http://tempuri.org/IEmployeeCreate/RemoveEmployeeResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(Client.ClientServiceReference.EmployeeDoesNotExists), Action="http://tempuri.org/IEmployeeCreate/RemoveEmployeeEmployeeDoesNotExistsFault", Name="EmployeeDoesNotExists", Namespace="http://schemas.datacontract.org/2004/07/EmployeeManagementSystem")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Client.ClientServiceReference.EmployeeServiceFault), Action="http://tempuri.org/IEmployeeCreate/RemoveEmployeeEmployeeServiceFaultFault", Name="EmployeeServiceFault", Namespace="http://schemas.datacontract.org/2004/07/EmployeeManagementSystem")]
         void RemoveEmployee(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeCreate/RemoveEmployee", ReplyAction="http://tempuri.org/IEmployeeCreate/RemoveEmployeeResponse")]
         System.Threading.Tasks.Task RemoveEmployeeAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeCreate/ModifyComment", ReplyAction="http://tempuri.org/IEmployeeCreate/ModifyCommentResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(Client.ClientServiceReference.EmployeeDoesNotExists), Action="http://tempuri.org/IEmployeeCreate/ModifyCommentEmployeeDoesNotExistsFault", Name="EmployeeDoesNotExists", Namespace="http://schemas.datacontract.org/2004/07/EmployeeManagementSystem")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Client.ClientServiceReference.EmployeeServiceFault), Action="http://tempuri.org/IEmployeeCreate/ModifyCommentEmployeeServiceFaultFault", Name="EmployeeServiceFault", Namespace="http://schemas.datacontract.org/2004/07/EmployeeManagementSystem")]
         Client.ClientServiceReference.EmployeeManagement ModifyComment(int id, string comment);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeCreate/ModifyComment", ReplyAction="http://tempuri.org/IEmployeeCreate/ModifyCommentResponse")]
@@ -372,33 +295,33 @@ namespace Client.ClientServiceReference {
     public interface IEmployeeRetrieve {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeRetrieve/SearchById", ReplyAction="http://tempuri.org/IEmployeeRetrieve/SearchByIdResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(Client.ClientServiceReference.EmployeeDoesNotExists), Action="http://tempuri.org/IEmployeeRetrieve/SearchByIdEmployeeDoesNotExistsFault", Name="EmployeeDoesNotExists", Namespace="http://schemas.datacontract.org/2004/07/EmployeeManagementSystem")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Client.ClientServiceReference.EmployeeServiceFault), Action="http://tempuri.org/IEmployeeRetrieve/SearchByIdEmployeeServiceFaultFault", Name="EmployeeServiceFault", Namespace="http://schemas.datacontract.org/2004/07/EmployeeManagementSystem")]
         Client.ClientServiceReference.EmployeeManagement SearchById(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeRetrieve/SearchById", ReplyAction="http://tempuri.org/IEmployeeRetrieve/SearchByIdResponse")]
         System.Threading.Tasks.Task<Client.ClientServiceReference.EmployeeManagement> SearchByIdAsync(int id);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeRetrieve/SearchByName", ReplyAction="http://tempuri.org/IEmployeeRetrieve/SearchByNameResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(Client.ClientServiceReference.EmployeeDoesNotExists), Action="http://tempuri.org/IEmployeeRetrieve/SearchByNameEmployeeDoesNotExistsFault", Name="EmployeeDoesNotExists", Namespace="http://schemas.datacontract.org/2004/07/EmployeeManagementSystem")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Client.ClientServiceReference.EmployeeServiceFault), Action="http://tempuri.org/IEmployeeRetrieve/SearchByNameEmployeeServiceFaultFault", Name="EmployeeServiceFault", Namespace="http://schemas.datacontract.org/2004/07/EmployeeManagementSystem")]
         Client.ClientServiceReference.EmployeeManagement SearchByName(string name);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeRetrieve/SearchByName", ReplyAction="http://tempuri.org/IEmployeeRetrieve/SearchByNameResponse")]
         System.Threading.Tasks.Task<Client.ClientServiceReference.EmployeeManagement> SearchByNameAsync(string name);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeRetrieve/GetAllEmployee", ReplyAction="http://tempuri.org/IEmployeeRetrieve/GetAllEmployeeResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(Client.ClientServiceReference.EmployeeDoesNotExists), Action="http://tempuri.org/IEmployeeRetrieve/GetAllEmployeeEmployeeDoesNotExistsFault", Name="EmployeeDoesNotExists", Namespace="http://schemas.datacontract.org/2004/07/EmployeeManagementSystem")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Client.ClientServiceReference.EmployeeServiceFault), Action="http://tempuri.org/IEmployeeRetrieve/GetAllEmployeeEmployeeServiceFaultFault", Name="EmployeeServiceFault", Namespace="http://schemas.datacontract.org/2004/07/EmployeeManagementSystem")]
         Client.ClientServiceReference.EmployeeManagement[] GetAllEmployee();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeRetrieve/GetAllEmployee", ReplyAction="http://tempuri.org/IEmployeeRetrieve/GetAllEmployeeResponse")]
         System.Threading.Tasks.Task<Client.ClientServiceReference.EmployeeManagement[]> GetAllEmployeeAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeRetrieve/GetAllEmployeeWithRemark", ReplyAction="http://tempuri.org/IEmployeeRetrieve/GetAllEmployeeWithRemarkResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(Client.ClientServiceReference.EmployeeDoesNotExists), Action="http://tempuri.org/IEmployeeRetrieve/GetAllEmployeeWithRemarkEmployeeDoesNotExist" +
-            "sFault", Name="EmployeeDoesNotExists", Namespace="http://schemas.datacontract.org/2004/07/EmployeeManagementSystem")]
-        Client.ClientServiceReference.EmployeeManagement[] GetAllEmployeeWithRemark();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeRetrieve/GetAllEmployeeWithComment", ReplyAction="http://tempuri.org/IEmployeeRetrieve/GetAllEmployeeWithCommentResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Client.ClientServiceReference.EmployeeServiceFault), Action="http://tempuri.org/IEmployeeRetrieve/GetAllEmployeeWithCommentEmployeeServiceFaul" +
+            "tFault", Name="EmployeeServiceFault", Namespace="http://schemas.datacontract.org/2004/07/EmployeeManagementSystem")]
+        Client.ClientServiceReference.EmployeeManagement[] GetAllEmployeeWithComment();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeRetrieve/GetAllEmployeeWithRemark", ReplyAction="http://tempuri.org/IEmployeeRetrieve/GetAllEmployeeWithRemarkResponse")]
-        System.Threading.Tasks.Task<Client.ClientServiceReference.EmployeeManagement[]> GetAllEmployeeWithRemarkAsync();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeRetrieve/GetAllEmployeeWithComment", ReplyAction="http://tempuri.org/IEmployeeRetrieve/GetAllEmployeeWithCommentResponse")]
+        System.Threading.Tasks.Task<Client.ClientServiceReference.EmployeeManagement[]> GetAllEmployeeWithCommentAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -452,12 +375,12 @@ namespace Client.ClientServiceReference {
             return base.Channel.GetAllEmployeeAsync();
         }
         
-        public Client.ClientServiceReference.EmployeeManagement[] GetAllEmployeeWithRemark() {
-            return base.Channel.GetAllEmployeeWithRemark();
+        public Client.ClientServiceReference.EmployeeManagement[] GetAllEmployeeWithComment() {
+            return base.Channel.GetAllEmployeeWithComment();
         }
         
-        public System.Threading.Tasks.Task<Client.ClientServiceReference.EmployeeManagement[]> GetAllEmployeeWithRemarkAsync() {
-            return base.Channel.GetAllEmployeeWithRemarkAsync();
+        public System.Threading.Tasks.Task<Client.ClientServiceReference.EmployeeManagement[]> GetAllEmployeeWithCommentAsync() {
+            return base.Channel.GetAllEmployeeWithCommentAsync();
         }
     }
 }

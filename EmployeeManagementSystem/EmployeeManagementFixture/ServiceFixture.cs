@@ -22,6 +22,9 @@ namespace EmployeeManagementFixture
     [TestClass]
     public class ServiceFixture
     {
+        /// <summary>
+        /// It Clear the Employee List Before Running Each Test Cases
+        /// </summary>
         [TestInitialize]
         public void CleanUpList()
         {
@@ -29,6 +32,9 @@ namespace EmployeeManagementFixture
             createClient.ClearList();
         }
 
+        /// <summary>
+        /// Test case for Adding Employee Details in the List & Retrieving Details
+        /// </summary>
         [TestMethod]
         public void AddAndRetrieveEmployeeDetails()
         {
@@ -44,7 +50,7 @@ namespace EmployeeManagementFixture
             Assert.AreEqual("Hello..", empDetails.Comment);
         }
 
-
+   
         [TestMethod]
         public void AddAgainEmployeeDetails()
         {
@@ -68,7 +74,9 @@ namespace EmployeeManagementFixture
             Assert.AreEqual("Hello..Again..", empTwoDetails.Comment);
         }
 
-
+        /// <summary>
+        /// Test Case for Adding Comment/Remark for Existing Employee in the List
+        /// </summary>
         [TestMethod]
         public void AddCommentForExistingEmployee()
         {
@@ -84,9 +92,12 @@ namespace EmployeeManagementFixture
             Assert.AreEqual("Modified Hello...", empModified.Comment);
 
         }
+        /// <summary>
+        /// Test Case for Retrieving Details of Employee , if there Comment is not null
+        /// </summary>
 
         [TestMethod]
-        public void GetAllEmployeeWithRemark()
+        public void GetAllEmployeeWithComment()
         {
             var createClient = new EmployeeCreateClient("BasicHttpBinding_IEmployeeCreate");
             var retrieveClient = new EmployeeRetrieveClient("WSHttpBinding_IEmployeeRetrieve");
@@ -103,10 +114,13 @@ namespace EmployeeManagementFixture
             var empFour = createClient.CreateEmployee(4, "Batliwala", null);
             createClient.AddEmployee(empFour);
 
-            EmployeeManagement[] employee = retrieveClient.GetAllEmployeeWithRemark();
+            EmployeeManagement[] employee = retrieveClient.GetAllEmployeeWithComment();
             Assert.AreEqual(2, employee.Length);
         }
 
+        /// <summary>
+        /// Test Case for Retrieving Details of all the Employee
+        /// </summary>
         [TestMethod]
         public void GetAllEmployee()
         {
@@ -129,6 +143,9 @@ namespace EmployeeManagementFixture
             Assert.AreEqual(4, employee.Length);
         }
 
+        /// <summary>
+        /// Test Case for Retrieving Details of Employee by using Employee Name
+        /// </summary>
         [TestMethod]
         public void RetrieveEmployeeByName()
         {
@@ -146,6 +163,9 @@ namespace EmployeeManagementFixture
             Assert.AreEqual("saif", result.EmpName);
             Assert.AreEqual("Hello..", result.Comment);
         }
+        /// <summary>
+        /// Test Case for Retrieving Details of Employee by using Employee ID
+        /// </summary>
 
         [TestMethod]
         public void RetrieveEmployeeByID()
@@ -165,6 +185,9 @@ namespace EmployeeManagementFixture
             Assert.AreEqual("Hello..Again..", result.Comment);
         }
 
+        /// <summary>
+        /// Test Case for Removing Details of Employee by using Employee ID
+        /// </summary>
 
         [TestMethod]
         public void RemoveEmployeeById()
@@ -183,8 +206,12 @@ namespace EmployeeManagementFixture
             Assert.AreEqual(1, employee.Length);
         }
 
+        /// <summary>
+        /// Test Case for Modifying Comment/Remark for the Employee which is not Present in the List
+        /// </summary>
+
         [TestMethod]
-        [ExpectedException(typeof(FaultException<EmployeeManagementFixture.EmployeeServiceReference.EmployeeDoesNotExists>))]
+        [ExpectedException(typeof(FaultException<EmployeeManagementFixture.EmployeeServiceReference.EmployeeServiceFault>))]
         public void ModifyCommentWhenEmployeeNotExits()
         {
 
@@ -197,9 +224,12 @@ namespace EmployeeManagementFixture
             var empModified = createClient.ModifyComment(6, "Modified Hello...");
         }
 
+        /// <summary>
+        /// Test Case for Retrieving Details of Employee which is not Present in the List
+        /// </summary>
 
         [TestMethod]
-        [ExpectedException(typeof(FaultException<EmployeeManagementFixture.EmployeeServiceReference.EmployeeDoesNotExists>))]
+        [ExpectedException(typeof(FaultException<EmployeeManagementFixture.EmployeeServiceReference.EmployeeServiceFault>))]
         public void GetEmployeeWhenNoEmployeeExits()
         {
 
@@ -211,8 +241,12 @@ namespace EmployeeManagementFixture
             
         }
 
+        /// <summary>
+        /// Test Case for Removing Details of Employee when Employee is Not Present in List
+        /// </summary>
+
         [TestMethod]
-        [ExpectedException(typeof(FaultException<EmployeeManagementFixture.EmployeeServiceReference.EmployeeDoesNotExists>))]
+        [ExpectedException(typeof(FaultException<EmployeeManagementFixture.EmployeeServiceReference.EmployeeServiceFault>))]
         public void RemoveEmployeeWhenEmployeeNotExists()
         {
 
@@ -223,9 +257,12 @@ namespace EmployeeManagementFixture
 
         }
 
+        /// <summary>
+        /// Test Case For Creating Employee , when Its Already Present in the List
+        /// </summary>
 
         [TestMethod]
-        [ExpectedException(typeof(FaultException<EmployeeManagementFixture.EmployeeServiceReference.EmployeeAlreadyExists>))]
+        [ExpectedException(typeof(FaultException<EmployeeManagementFixture.EmployeeServiceReference.EmployeeServiceFault>))]
         public void CreateEmployeeWhenItsAlreadyExists()
         {
 

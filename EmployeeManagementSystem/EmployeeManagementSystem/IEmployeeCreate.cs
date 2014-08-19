@@ -8,23 +8,27 @@ using System.Text;
 
 namespace EmployeeManagementSystem
 {
+    /// <summary>
+    /// Defined Service Contract & Operation Contract for Create, Add, ModifyComment of Employee
+    /// </summary>
     [ServiceContract]
     public interface IEmployeeCreate
     {
+        
         [OperationContract]
-        [FaultContract(typeof(EmployeeAlreadyExists))]
+        [FaultContract(typeof(EmployeeServiceFault))]
         EmployeeManagement CreateEmployee(int id,string name,string comment);
         
         [OperationContract]
-        [FaultContract(typeof(EmployeeAlreadyExists))]
+        [FaultContract(typeof(EmployeeServiceFault))]
         void AddEmployee(EmployeeManagement emp);
         
         [OperationContract]
-        [FaultContract(typeof(EmployeeDoesNotExists))]
+        [FaultContract(typeof(EmployeeServiceFault))]
         void RemoveEmployee(int id);
         
         [OperationContract]
-        [FaultContract(typeof(EmployeeDoesNotExists))]
+        [FaultContract(typeof(EmployeeServiceFault))]
         EmployeeManagement ModifyComment(int id,string comment);
         
         [OperationContract]

@@ -9,20 +9,33 @@ using System.Text;
 
 namespace EmployeeManagementSystem
 {
-    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
+
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)] //singleton
     public class EmployeeService : IEmployeeCreate, IEmployeeRetrieve
     {
         EmployeeManagement empObj = new EmployeeManagement();
+        /// <summary>
+        /// Created List for Storing Employee details
+        /// </summary>
         private static List<EmployeeManagement> _emplist = new List<EmployeeManagement>();
 
+        /// <summary>
+        /// It Add Employee Object in List
+        /// </summary>
+        /// <param name="emp">Employee Object</param>
         public void AddEmployee(EmployeeManagement emp)
         {
             _emplist.Add(emp);
         }
 
+        /// <summary>
+        /// It Return All the Employee in the List
+        /// If Employee Does not Exist in the list, then it will throw FaultException
+        /// </summary>
+        /// <returns>List</returns>
         public List<EmployeeManagement> GetAllEmployee()
         {
-            EmployeeDoesNotExists fault = new EmployeeDoesNotExists();
+            EmployeeServiceFault fault = new EmployeeServiceFault();
             if (_emplist.Count() > 0)
             {
                 return _emplist;
@@ -32,13 +45,18 @@ namespace EmployeeManagementSystem
                 fault.FaultId = 100;
                 fault.FaultMessage = "Employee Does not exits";
                 fault.FaultDetail = "Employee is Not Present in the List";
-                throw new FaultException<EmployeeDoesNotExists>(fault, "Employee Does not exits");
+                throw new FaultException<EmployeeServiceFault>(fault, fault.FaultDetail);
             }
         }
 
+        /// <summary>
+        /// It Remove Employee Details from the List by using Employee Id
+        /// If Employee Does not Exist in the list, then it will throw FaultException
+        /// </summary>
+        /// <param name="id">Employee ID</param>
         public void RemoveEmployee(int id)
         {
-            EmployeeDoesNotExists fault = new EmployeeDoesNotExists();
+            EmployeeServiceFault fault = new EmployeeServiceFault();
             if (_emplist.Any(e => e.EmpID == id))
             {
                 _emplist.Remove(_emplist.Find(e => e.EmpID.Equals(id)));
@@ -48,14 +66,20 @@ namespace EmployeeManagementSystem
                 fault.FaultId = 100;
                 fault.FaultMessage = "Employee Does not exits";
                 fault.FaultDetail = "Employee is Not Present in the List";
-                throw new FaultException<EmployeeDoesNotExists>(fault, "Employee Does not exits");
+                throw new FaultException<EmployeeServiceFault>(fault, fault.FaultDetail);
             }
 
         }
+        /// <summary>
+        /// It Retrieve Employee Details by using Employee ID
+        /// If Employee Does not Exist in the list, then it will throw FaultException
+        /// </summary>
+        /// <param name="id">Employee ID</param>
+        /// <returns>Employee Object</returns>
 
         public EmployeeManagement GetEmployee(int id)
         {
-            EmployeeDoesNotExists fault = new EmployeeDoesNotExists();
+            EmployeeServiceFault fault = new EmployeeServiceFault();
             if (_emplist.Any(e => e.EmpID == id))
             {
                 return _emplist.Find(e => e.EmpID.Equals(id));
@@ -65,33 +89,47 @@ namespace EmployeeManagementSystem
                 fault.FaultId = 100;
                 fault.FaultMessage = "Employee Does not exits";
                 fault.FaultDetail = "Employee is Not Present in the List";
-                throw new FaultException<EmployeeDoesNotExists>(fault, "Employee Does not exits");
+                throw new FaultException<EmployeeServiceFault>(fault, fault.FaultDetail);
             }
         }
+        /// <summary>
+        /// It create Employee Object
+        /// If Employee Already Exist in the list, then it will throw FaultException
+        /// </summary>
+        /// <param name="id">Employee Id</param>
+        /// <param name="name">Employee Name</param>
+        /// <param name="comment">Employee Comment</param>
+        /// <returns>Employee Object</returns>
 
-        public EmployeeManagement CreateEmployee(int id, string name, string comments)
+        public EmployeeManagement CreateEmployee(int id, string name, string comment)
         {
-            EmployeeAlreadyExists fault = new EmployeeAlreadyExists();
+            EmployeeServiceFault fault = new EmployeeServiceFault();
             if (_emplist.Any(e => e.EmpID == id))
             {
                 fault.FaultId = 101;
                 fault.FaultMessage = "Employee Already Exists";
                 fault.FaultDetail = "Employee Already Present in the List";
-                throw new FaultException<EmployeeAlreadyExists>(fault, "Employee Already Exists");
+                throw new FaultException<EmployeeServiceFault>(fault, "Employee Already Exists");
             }
             else
             {
                 empObj.EmpID = id;
                 empObj.EmpName = name;
-                empObj.Comment = comments;
+                empObj.Comment = comment;
                 empObj.TimeSubmitted = DateTime.Now;
                 return empObj;
             }
         }
 
+        /// <summary>
+        /// It Retrieve Employee Details by using Employee Name
+        /// If Employee Does not Exist in the list, then it will throw FaultException
+        /// </summary>
+        /// <param name="name">Employee Name</param>
+        /// <returns>Employee Object</returns>
         public EmployeeManagement GetEmployee(string name)
-        { 
-            EmployeeDoesNotExists fault = new EmployeeDoesNotExists();
+        {
+            EmployeeServiceFault fault = new EmployeeServiceFault();
             if (_emplist.Any(e => e.EmpName == name))
             {
                 return _emplist.Find(e => e.EmpName.Equals(name));
@@ -101,13 +139,20 @@ namespace EmployeeManagementSystem
                 fault.FaultId = 100;
                 fault.FaultMessage = "Employee Does not exits";
                 fault.FaultDetail = "Employee is Not Present in the List";
-                throw new FaultException<EmployeeDoesNotExists>(fault, "Employee Does not exits");
+                throw new FaultException<EmployeeServiceFault>(fault, fault.FaultDetail);
             }
         }
 
+        /// <summary>
+        /// It Modify Comment of Already Existing Employee
+        /// If Employee Does not Exist in the list, then it will throw FaultException
+        /// </summary>
+        /// <param name="id">Employee ID</param>
+        /// <param name="comment">Employee Comment</param>
+        /// <returns>Employee Object</returns>
         public EmployeeManagement ModifyComment(int id, string comment)
         {
-            EmployeeDoesNotExists fault = new EmployeeDoesNotExists();
+            EmployeeServiceFault fault = new EmployeeServiceFault();
             if (_emplist.Any(e => e.EmpID == id))
             {
                 var empToModify = _emplist.Find(e => e.EmpID.Equals(id));
@@ -119,14 +164,18 @@ namespace EmployeeManagementSystem
                 fault.FaultId = 100;
                 fault.FaultMessage = "Employee Does not exits";
                 fault.FaultDetail = "Employee is Not Present in the List";
-                throw new FaultException<EmployeeDoesNotExists>(fault, "Employee Does not exits");
+                throw new FaultException<EmployeeServiceFault>(fault, fault.FaultDetail);
             }
         }
-
-        List<EmployeeManagement> IEmployeeRetrieve.GetAllEmployeeWithRemark()
+        /// <summary>
+        /// It Retrieve Employee Details of Employee Who has Comment/Remark
+        /// If Employee Does not Exist in the list, then it will throw FaultException
+        /// </summary>
+        /// <returns></returns>
+        List<EmployeeManagement> IEmployeeRetrieve.GetAllEmployeeWithComment()
         {
-            EmployeeDoesNotExists fault = new EmployeeDoesNotExists();
-             var selectedEmployee = _emplist.FindAll(e => e.Comment != null);
+            EmployeeServiceFault fault = new EmployeeServiceFault();
+            var selectedEmployee = _emplist.FindAll(e => e.Comment != null);
             if (selectedEmployee.Count() > 0)
             {
                 return _emplist.FindAll(e => e.Comment != null);
@@ -136,10 +185,13 @@ namespace EmployeeManagementSystem
                 fault.FaultId = 100;
                 fault.FaultMessage = "Employee Does not exits";
                 fault.FaultDetail = "Employee is Not Present in the List";
-                throw new FaultException<EmployeeDoesNotExists>(fault, "Employee Does not exits");
+                throw new FaultException<EmployeeServiceFault>(fault, fault.FaultDetail);
             }
         }
-       
+        /// <summary>
+        /// It clear the EmployeeList
+        /// </summary>
+
         public void ClearList()
         {
             _emplist.Clear();
