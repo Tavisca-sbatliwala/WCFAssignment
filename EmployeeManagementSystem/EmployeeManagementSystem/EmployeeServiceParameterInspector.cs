@@ -66,7 +66,7 @@ namespace EmployeeManagementSystem
 
         private void EmployeeIDValidator(int empId)
         {
-            Regex employeeIdRegex = new Regex("^[0-9]+$");
+            //Regex employeeIdRegex = new Regex("^[0-9]+$");
             if (empId < 0)
             {
                 EmployeeServiceFault fault = new EmployeeServiceFault();
@@ -76,14 +76,14 @@ namespace EmployeeManagementSystem
                 throw new FaultException<EmployeeServiceFault>(fault, fault.FaultDetail);
             }
 
-            if (!employeeIdRegex.IsMatch(empId.ToString()))
-            {
-                EmployeeServiceFault fault = new EmployeeServiceFault();
-                fault.FaultId = 106;
-                fault.FaultMessage = "Employee ID Should Contains only Digits";
-                fault.FaultDetail = "Employee ID Should Contains only Digits i.e [0-9]";
-                throw new FaultException<EmployeeServiceFault>(fault, fault.FaultDetail);
-            }
+            //if (!employeeIdRegex.IsMatch(empId.ToString()))
+            //{
+            //    EmployeeServiceFault fault = new EmployeeServiceFault();
+            //    fault.FaultId = 106;
+            //    fault.FaultMessage = "Employee ID Should Contains only Digits";
+            //    fault.FaultDetail = "Employee ID Should Contains only Digits i.e [0-9]";
+            //    throw new FaultException<EmployeeServiceFault>(fault, fault.FaultDetail);
+            //}
         }
 
         private void EmployeeNameValidator(string empName)
