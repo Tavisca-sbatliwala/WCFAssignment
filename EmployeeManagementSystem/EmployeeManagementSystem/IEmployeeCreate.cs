@@ -12,13 +12,21 @@ namespace EmployeeManagementSystem
     public interface IEmployeeCreate
     {
         [OperationContract]
+        [FaultContract(typeof(EmployeeAlreadyExists))]
         EmployeeManagement CreateEmployee(int id,string name,string comment);
+        
         [OperationContract]
+        [FaultContract(typeof(EmployeeAlreadyExists))]
         void AddEmployee(EmployeeManagement emp);
+        
         [OperationContract]
+        [FaultContract(typeof(EmployeeDoesNotExists))]
         void RemoveEmployee(int id);
+        
         [OperationContract]
+        [FaultContract(typeof(EmployeeAlreadyExists))]
         EmployeeManagement ModifyRemark(int id,string comment);
+        
         void ClearList();
 
     }

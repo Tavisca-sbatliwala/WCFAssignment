@@ -13,7 +13,7 @@ namespace EmployeeManagementSystem
     public class EmployeeService : IEmployeeCreate, IEmployeeRetrieve
     {
         EmployeeManagement empObj = new EmployeeManagement();
-        public static List<EmployeeManagement> _emplist = new List<EmployeeManagement>();
+        private static List<EmployeeManagement> _emplist = new List<EmployeeManagement>();
 
         public void AddEmployee(EmployeeManagement emp)
         {
@@ -22,58 +22,126 @@ namespace EmployeeManagementSystem
 
         public List<EmployeeManagement> GetAllEmployee()
         {
-            return _emplist;
+            EmployeeDoesNotExists fault = new EmployeeDoesNotExists();
+            if (_emplist.Count() > 0)
+            {
+                return _emplist;
+            }
+            else
+            {
+                fault.FaultId = 100;
+                fault.FaultMessage = "Employee Does not exits";
+                fault.FaultDetail = "Employee is Not Present in the List";
+                throw new FaultException<EmployeeDoesNotExists>(fault, "Employee Does not exits");
+            }
         }
 
         public void RemoveEmployee(int id)
         {
-            _emplist.Remove(_emplist.Find(e => e.EmpID.Equals(id)));
+            EmployeeDoesNotExists fault = new EmployeeDoesNotExists();
+            if (_emplist.Any(e => e.EmpID == id))
+            {
+                _emplist.Remove(_emplist.Find(e => e.EmpID.Equals(id)));
+            }
+            else
+            {
+                fault.FaultId = 100;
+                fault.FaultMessage = "Employee Does not exits";
+                fault.FaultDetail = "Employee is Not Present in the List";
+                throw new FaultException<EmployeeDoesNotExists>(fault, "Employee Does not exits");
+            }
+
         }
 
         public EmployeeManagement GetEmployee(int id)
         {
-            return _emplist.Find(e => e.EmpID.Equals(id));
+            EmployeeDoesNotExists fault = new EmployeeDoesNotExists();
+            if (_emplist.Any(e => e.EmpID == id))
+            {
+                return _emplist.Find(e => e.EmpID.Equals(id));
+            }
+            else
+            {
+                fault.FaultId = 100;
+                fault.FaultMessage = "Employee Does not exits";
+                fault.FaultDetail = "Employee is Not Present in the List";
+                throw new FaultException<EmployeeDoesNotExists>(fault, "Employee Does not exits");
+            }
         }
 
         public EmployeeManagement CreateEmployee(int id, string name, string comments)
         {
-
-            empObj.EmpID = id;
-            empObj.EmpName = name;
-            empObj.Comment = comments;
-            empObj.TimeSubmitted = DateTime.Now;
-            return empObj;
-        }
-
-        public EmployeeManagement GetEmployee(string name)
-        {
-            return _emplist.Find(e => e.EmpName.Equals(name));
-        }
-
-
-        public EmployeeManagement ModifyRemark(int id,string comment)
-        {
-            var tempEmp = _emplist.Find(e => e.EmpID.Equals(id));
-            if (tempEmp == null)
+            EmployeeAlreadyExists fault = new EmployeeAlreadyExists();
+            if (!_emplist.Any(e => e.EmpID == id))
             {
-                throw FaultException.CreateFault(MessageFault.CreateFault(new FaultCode("100"), "Employee does not exist"));
+                empObj.EmpID = id;
+                empObj.EmpName = name;
+                empObj.Comment = comments;
+                empObj.TimeSubmitted = DateTime.Now;
+                return empObj;
             }
             else
             {
-                tempEmp.Comment = comment;
-                return tempEmp;
+                fault.FaultId = 101;
+                fault.FaultMessage = "Employee Already Exists";
+                fault.FaultDetail = "Employee Already Present in the List";
+                throw new FaultException<EmployeeAlreadyExists>(fault, "Employee Already Exists");
+            }
+        }
+
+        public EmployeeManagement GetEmployee(string name)
+        { 
+            EmployeeDoesNotExists fault = new EmployeeDoesNotExists();
+            if (_emplist.Any(e => e.EmpName == name))
+            {
+                return _emplist.Find(e => e.EmpName.Equals(name));
+            }
+            else
+            {
+                fault.FaultId = 100;
+                fault.FaultMessage = "Employee Does not exits";
+                fault.FaultDetail = "Employee is Not Present in the List";
+                throw new FaultException<EmployeeDoesNotExists>(fault, "Employee Does not exits");
+            }
+        }
+
+        public EmployeeManagement ModifyRemark(int id, string comment)
+        {
+            EmployeeDoesNotExists fault = new EmployeeDoesNotExists();
+            if (_emplist.Any(e => e.EmpID == id))
+            {
+                var empToModify = _emplist.Find(e => e.EmpID.Equals(id));
+                empToModify.Comment = comment;
+                return empToModify;
+            }
+            else
+            {
+                fault.FaultId = 100;
+                fault.FaultMessage = "Employee Does not exits";
+                fault.FaultDetail = "Employee is Not Present in the List";
+                throw new FaultException<EmployeeDoesNotExists>(fault, "Employee Does not exits");
             }
         }
 
         List<EmployeeManagement> IEmployeeRetrieve.GetAllEmployeeWithRemark()
         {
-            return _emplist.FindAll(e => e.Comment != null);
+            EmployeeDoesNotExists fault = new EmployeeDoesNotExists();
+             var selectedEmployee = _emplist.FindAll(e => e.Comment != null);
+            if (selectedEmployee.Count() > 0)
+            {
+                return _emplist.FindAll(e => e.Comment != null);
+            }
+            else
+            {
+                fault.FaultId = 100;
+                fault.FaultMessage = "Employee Does not exits";
+                fault.FaultDetail = "Employee is Not Present in the List";
+                throw new FaultException<EmployeeDoesNotExists>(fault, "Employee Does not exits");
+            }
         }
-
-
         public void ClearList()
         {
-            var count=_emplist.Count();
+            var count = _emplist.Count();
             _emplist.RemoveRange(0, count);
         }
     }

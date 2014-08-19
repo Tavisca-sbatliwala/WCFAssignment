@@ -9,6 +9,22 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="EmployeeManagement" nillable="true" type="tns:EmployeeManagement" />
+  <xs:complexType name="EmployeeAlreadyExists">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FaultDetail" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FaultId" type="xs:int" />
+      <xs:element minOccurs="0" name="FaultMessage" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EmployeeAlreadyExists" nillable="true" type="tns:EmployeeAlreadyExists" />
+  <xs:complexType name="EmployeeDoesNotExists">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FaultDetail" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FaultId" type="xs:int" />
+      <xs:element minOccurs="0" name="FaultMessage" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EmployeeDoesNotExists" nillable="true" type="tns:EmployeeDoesNotExists" />
   <xs:complexType name="ArrayOfEmployeeManagement">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="EmployeeManagement" nillable="true" type="tns:EmployeeManagement" />
