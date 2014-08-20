@@ -17,7 +17,7 @@ namespace EmployeeManagementSystem
         public object BeforeCall(string operationName, object[] inputs)
         {
 
-            if (operationName == "CreateEmployee")
+            if (operationName.Equals("CreateEmployee"))
             {
 
                 int empId = (int)inputs[0];
@@ -45,14 +45,14 @@ namespace EmployeeManagementSystem
                 return null;
             }
 
-            if (operationName.Equals("SearchById"))
+            if (operationName.Equals("GetById"))
             {
                 int empId = (int)inputs[0];
                 EmployeeIDValidator(empId);
                 return null;
             }
 
-            if (operationName.Equals("SearchByName"))
+            if (operationName.Equals("GetByName"))
             {
                 string empName = inputs[0] as string;
                 EmployeeNameValidator(empName);

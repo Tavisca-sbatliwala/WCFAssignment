@@ -24,10 +24,10 @@ namespace EmployeeManagementFixture.EmployeeServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeCreate/AddEmployee", ReplyAction="http://tempuri.org/IEmployeeCreate/AddEmployeeResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(EmployeeManagementSystem.EmployeeServiceFault), Action="http://tempuri.org/IEmployeeCreate/AddEmployeeEmployeeServiceFaultFault", Name="EmployeeServiceFault", Namespace="http://schemas.datacontract.org/2004/07/EmployeeManagementSystem")]
-        void AddEmployee(EmployeeManagementSystem.EmployeeManagement emp);
+        void AddEmployee(EmployeeManagementSystem.EmployeeManagement employee);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeCreate/AddEmployee", ReplyAction="http://tempuri.org/IEmployeeCreate/AddEmployeeResponse")]
-        System.Threading.Tasks.Task AddEmployeeAsync(EmployeeManagementSystem.EmployeeManagement emp);
+        System.Threading.Tasks.Task AddEmployeeAsync(EmployeeManagementSystem.EmployeeManagement employee);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeCreate/RemoveEmployee", ReplyAction="http://tempuri.org/IEmployeeCreate/RemoveEmployeeResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(EmployeeManagementSystem.EmployeeServiceFault), Action="http://tempuri.org/IEmployeeCreate/RemoveEmployeeEmployeeServiceFaultFault", Name="EmployeeServiceFault", Namespace="http://schemas.datacontract.org/2004/07/EmployeeManagementSystem")]
@@ -85,12 +85,12 @@ namespace EmployeeManagementFixture.EmployeeServiceReference {
             return base.Channel.CreateEmployeeAsync(id, name, comment);
         }
         
-        public void AddEmployee(EmployeeManagementSystem.EmployeeManagement emp) {
-            base.Channel.AddEmployee(emp);
+        public void AddEmployee(EmployeeManagementSystem.EmployeeManagement employee) {
+            base.Channel.AddEmployee(employee);
         }
         
-        public System.Threading.Tasks.Task AddEmployeeAsync(EmployeeManagementSystem.EmployeeManagement emp) {
-            return base.Channel.AddEmployeeAsync(emp);
+        public System.Threading.Tasks.Task AddEmployeeAsync(EmployeeManagementSystem.EmployeeManagement employee) {
+            return base.Channel.AddEmployeeAsync(employee);
         }
         
         public void RemoveEmployee(int id) {

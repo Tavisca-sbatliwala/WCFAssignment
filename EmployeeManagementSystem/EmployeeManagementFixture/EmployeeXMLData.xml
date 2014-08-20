@@ -1,7 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<AddEmployee>
-  <EmployeeId>1</EmployeeId>
-  <EmployeeName>saif</EmployeeName>
-  <EmployeeComment>Hello</EmployeeComment>
-</AddEmployee>
-
+<EmployeeManagementSystem>
+  <AddEmployee>
+    <EmployeeId>1</EmployeeId>
+    <EmployeeName>saif</EmployeeName>
+    <EmployeeComment>Hello</EmployeeComment>
+  </AddEmployee>
+  <ExistingEmployee>
+    <EmployeeId>1</EmployeeId>
+    <EmployeeName>saif</EmployeeName>
+    <EmployeeComment>Hello..Again</EmployeeComment>
+  </ExistingEmployee>
+</EmployeeManagementSystem>

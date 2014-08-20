@@ -21,7 +21,7 @@ namespace EmployeeManagementSystem
         
         [OperationContract]
         [FaultContract(typeof(EmployeeServiceFault))]
-        void AddEmployee(EmployeeManagement emp);
+        void AddEmployee(EmployeeManagement employee);
         
         [OperationContract]
         [FaultContract(typeof(EmployeeServiceFault))]

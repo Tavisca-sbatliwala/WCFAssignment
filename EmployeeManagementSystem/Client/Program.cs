@@ -13,151 +13,153 @@ namespace Client
         {
             Console.WriteLine("Client is Running..........");
 
-            EmployeeCreateClient _clientcreate = new EmployeeCreateClient("BasicHttpBinding_IEmployeeCreate");
-            EmployeeRetrieveClient _clientretrive = new EmployeeRetrieveClient("WSHttpBinding_IEmployeeRetrieve");
-            int choice;
-            string ch = " ";
-            do
+            using (EmployeeCreateClient _clientcreate = new EmployeeCreateClient("BasicHttpBinding_IEmployeeCreate"))
+            using (EmployeeRetrieveClient _clientretrive = new EmployeeRetrieveClient("WSHttpBinding_IEmployeeRetrieve"))
             {
-                Console.WriteLine("---------------------------------------");
-                Console.WriteLine("Employee Management Service");
-                Console.WriteLine("---------------------------------------");
-                Console.WriteLine("1. Create & Add New Employee");
-                Console.WriteLine("2. Modify Comment of Employee");
-                Console.WriteLine("3. Get Employee Details by Name");
-                Console.WriteLine("4. Get Employee Details by ID");
-                Console.WriteLine("5. Get List of All Employee");
-                Console.WriteLine("6. Remove Employee From List");
-                Console.WriteLine("---------------------------------------");
-                choice = Int32.Parse(Console.ReadLine());
-                switch (choice)
+                int choice;
+                string ch = " ";
+                do
                 {
-                    case 1:
-                        try
-                        {
-                            Console.WriteLine("Enter Employee ID : ");
-                            var empId = int.Parse(Console.ReadLine());
-                            Console.WriteLine("Enter Employee Name : ");
-                            var empName = Console.ReadLine();
-                            Console.WriteLine("Enter Employee comment : ");
-                            var comment = Console.ReadLine();
-                            var emp = _clientcreate.CreateEmployee(empId, empName, comment);
-                            _clientcreate.AddEmployee(emp);
-                            Console.WriteLine("Employee Details Added Successfully...");
-                        }
-                        catch (FaultException<EmployeeServiceFault> ex)
-                        {
-                            Console.WriteLine("FaultId::" + ex.Detail.FaultId);
-                            Console.WriteLine("FaultMessage::" + ex.Detail.FaultMessage + Environment.NewLine);
-                            Console.WriteLine("FaultDetails::" + Environment.NewLine + ex.Detail.FaultDetail);
-                        }
-
-                        break;
-
-                    case 2:
-                        try
-                        {
-                            Console.WriteLine("Enter Employee Id to Add/Modify Comment : ");
-                            var id = int.Parse(Console.ReadLine());
-                            Console.WriteLine("Enter Comment ");
-                            var modifyComment = Console.ReadLine();
-                            _clientcreate.ModifyComment(id, modifyComment);
-                            Console.WriteLine("Comment modified/Added Successfully..");
-                        }
-                        catch (FaultException<EmployeeServiceFault> ex)
-                        {
-                            Console.WriteLine("FaultId::" + ex.Detail.FaultId);
-                            Console.WriteLine("FaultMessage::" + ex.Detail.FaultMessage + Environment.NewLine);
-                            Console.WriteLine("FaultDetails::" + Environment.NewLine + ex.Detail.FaultDetail);
-                        }
-
-                        break;
-
-                    case 3:
-                        try
-                        {
-                            Console.WriteLine("Enter Name of Employee to Get Employee Details : ");
-                            var name = Console.ReadLine();
-                            var getEmp = _clientretrive.GetByName(name);
-                            Console.WriteLine(getEmp.EmployeeID + " " + getEmp.EmployeeName + " " + getEmp.Comment + " " + getEmp.TimeSubmitted);
-                            Console.WriteLine("Employee Details Found...");
-                        }
-                        catch (FaultException<EmployeeServiceFault> ex)
-                        {
-                            Console.WriteLine("FaultId::" + ex.Detail.FaultId);
-                            Console.WriteLine("FaultMessage::" + ex.Detail.FaultMessage + Environment.NewLine);
-                            Console.WriteLine("FaultDetails::" + Environment.NewLine + ex.Detail.FaultDetail);
-                        }
-
-                        break;
-
-                    case 4:
-                        try
-                        {
-                            Console.WriteLine("Enter Employee Id to Search Employee : ");
-                            var searchId = int.Parse(Console.ReadLine());
-                            var getEmp1 = _clientretrive.GetById(searchId);
-                            Console.WriteLine(getEmp1.EmployeeID + " " + getEmp1.EmployeeName + " " + getEmp1.Comment + " " + getEmp1.TimeSubmitted);
-                            Console.WriteLine("Employee Details Found...");
-                        }
-                        catch (FaultException<EmployeeServiceFault> ex)
-                        {
-                            Console.WriteLine("FaultId::" + ex.Detail.FaultId);
-                            Console.WriteLine("FaultMessage::" + ex.Detail.FaultMessage + Environment.NewLine);
-                            Console.WriteLine("FaultDetails::" + Environment.NewLine + ex.Detail.FaultDetail);
-                        }
-
-                        break;
-
-                    case 5:
-                        try
-                        {
-
-                            EmployeeManagement[] employee = _clientretrive.GetAllEmployee();
-
-                            foreach (EmployeeManagement em in employee)
+                    Console.WriteLine("---------------------------------------");
+                    Console.WriteLine("Employee Management Service");
+                    Console.WriteLine("---------------------------------------");
+                    Console.WriteLine("1. Create & Add New Employee");
+                    Console.WriteLine("2. Modify Comment of Employee");
+                    Console.WriteLine("3. Get Employee Details by Name");
+                    Console.WriteLine("4. Get Employee Details by ID");
+                    Console.WriteLine("5. Get List of All Employee");
+                    Console.WriteLine("6. Remove Employee From List");
+                    Console.WriteLine("---------------------------------------");
+                    choice = Int32.Parse(Console.ReadLine());
+                    switch (choice)
+                    {
+                        case 1:
+                            try
                             {
-                                Console.WriteLine(em.EmployeeID + " " + em.EmployeeName + " " + em.Comment + " " + em.TimeSubmitted);
+                                Console.WriteLine("Enter Employee ID : ");
+                                var empId = int.Parse(Console.ReadLine());
+                                Console.WriteLine("Enter Employee Name : ");
+                                var empName = Console.ReadLine();
+                                Console.WriteLine("Enter Employee comment : ");
+                                var comment = Console.ReadLine();
+                                var emp = _clientcreate.CreateEmployee(empId, empName, comment);
+                                _clientcreate.AddEmployee(emp);
+                                Console.WriteLine("Employee Details Added Successfully...");
                             }
-                        }
-                        catch (FaultException<EmployeeServiceFault> ex)
-                        {
-                            Console.WriteLine("FaultId::" + ex.Detail.FaultId);
-                            Console.WriteLine("FaultMessage::" + ex.Detail.FaultMessage + Environment.NewLine);
-                            Console.WriteLine("FaultDetails::" + Environment.NewLine + ex.Detail.FaultDetail);
-                        }
+                            catch (FaultException<EmployeeServiceFault> ex)
+                            {
+                                Console.WriteLine("FaultId::" + ex.Detail.FaultId);
+                                Console.WriteLine("FaultMessage::" + ex.Detail.FaultMessage + Environment.NewLine);
+                                Console.WriteLine("FaultDetails::" + Environment.NewLine + ex.Detail.FaultDetail);
+                            }
 
-                        break;
+                            break;
 
-                    case 6:
-                        try
-                        {
-                            Console.WriteLine("Enter Employee Id to Remove Its Details : ");
-                            var removeId = int.Parse(Console.ReadLine());
-                            _clientcreate.RemoveEmployee(removeId);
-                            Console.WriteLine("Employee Details Removed Successfully...");
-                        }
-                        catch (FaultException<EmployeeServiceFault> ex)
-                        {
-                            Console.WriteLine("FaultId::" + ex.Detail.FaultId);
-                            Console.WriteLine("FaultMessage::" + ex.Detail.FaultMessage + Environment.NewLine);
-                            Console.WriteLine("FaultDetails::" + Environment.NewLine + ex.Detail.FaultDetail);
-                        }
-                        break;
+                        case 2:
+                            try
+                            {
+                                Console.WriteLine("Enter Employee Id to Add/Modify Comment : ");
+                                var id = int.Parse(Console.ReadLine());
+                                Console.WriteLine("Enter Comment ");
+                                var modifyComment = Console.ReadLine();
+                                _clientcreate.ModifyComment(id, modifyComment);
+                                Console.WriteLine("Comment modified/Added Successfully..");
+                            }
+                            catch (FaultException<EmployeeServiceFault> ex)
+                            {
+                                Console.WriteLine("FaultId::" + ex.Detail.FaultId);
+                                Console.WriteLine("FaultMessage::" + ex.Detail.FaultMessage + Environment.NewLine);
+                                Console.WriteLine("FaultDetails::" + Environment.NewLine + ex.Detail.FaultDetail);
+                            }
 
-                    default:
-                        Console.WriteLine("Invalid Choice..");
-                        break;
+                            break;
 
-                }
+                        case 3:
+                            try
+                            {
+                                Console.WriteLine("Enter Name of Employee to Get Employee Details : ");
+                                var name = Console.ReadLine();
+                                var getEmp = _clientretrive.GetByName(name);
+                                Console.WriteLine(getEmp.EmployeeID + " " + getEmp.EmployeeName + " " + getEmp.Comment + " " + getEmp.TimeSubmitted);
+                                Console.WriteLine("Employee Details Found...");
+                            }
+                            catch (FaultException<EmployeeServiceFault> ex)
+                            {
+                                Console.WriteLine("FaultId::" + ex.Detail.FaultId);
+                                Console.WriteLine("FaultMessage::" + ex.Detail.FaultMessage + Environment.NewLine);
+                                Console.WriteLine("FaultDetails::" + Environment.NewLine + ex.Detail.FaultDetail);
+                            }
 
-                Console.WriteLine("Do You Want To Continue(y/n) : ");
-                ch = Console.ReadLine();
+                            break;
+
+                        case 4:
+                            try
+                            {
+                                Console.WriteLine("Enter Employee Id to Search Employee : ");
+                                var searchId = int.Parse(Console.ReadLine());
+                                var getEmp1 = _clientretrive.GetById(searchId);
+                                Console.WriteLine(getEmp1.EmployeeID + " " + getEmp1.EmployeeName + " " + getEmp1.Comment + " " + getEmp1.TimeSubmitted);
+                                Console.WriteLine("Employee Details Found...");
+                            }
+                            catch (FaultException<EmployeeServiceFault> ex)
+                            {
+                                Console.WriteLine("FaultId::" + ex.Detail.FaultId);
+                                Console.WriteLine("FaultMessage::" + ex.Detail.FaultMessage + Environment.NewLine);
+                                Console.WriteLine("FaultDetails::" + Environment.NewLine + ex.Detail.FaultDetail);
+                            }
+
+                            break;
+
+                        case 5:
+                            try
+                            {
+
+                                EmployeeManagement[] employee = _clientretrive.GetAllEmployee();
+
+                                foreach (EmployeeManagement em in employee)
+                                {
+                                    Console.WriteLine(em.EmployeeID + " " + em.EmployeeName + " " + em.Comment + " " + em.TimeSubmitted);
+                                }
+                            }
+                            catch (FaultException<EmployeeServiceFault> ex)
+                            {
+                                Console.WriteLine("FaultId::" + ex.Detail.FaultId);
+                                Console.WriteLine("FaultMessage::" + ex.Detail.FaultMessage + Environment.NewLine);
+                                Console.WriteLine("FaultDetails::" + Environment.NewLine + ex.Detail.FaultDetail);
+                            }
+
+                            break;
+
+                        case 6:
+                            try
+                            {
+                                Console.WriteLine("Enter Employee Id to Remove Its Details : ");
+                                var removeId = int.Parse(Console.ReadLine());
+                                _clientcreate.RemoveEmployee(removeId);
+                                Console.WriteLine("Employee Details Removed Successfully...");
+                            }
+                            catch (FaultException<EmployeeServiceFault> ex)
+                            {
+                                Console.WriteLine("FaultId::" + ex.Detail.FaultId);
+                                Console.WriteLine("FaultMessage::" + ex.Detail.FaultMessage + Environment.NewLine);
+                                Console.WriteLine("FaultDetails::" + Environment.NewLine + ex.Detail.FaultDetail);
+                            }
+                            break;
+
+                        default:
+                            Console.WriteLine("Invalid Choice..");
+                            break;
+
+                    }
+
+                    Console.WriteLine("Do You Want To Continue(y/n) : ");
+                    ch = Console.ReadLine();
 
 
-            } while (ch.Equals("Y") || ch.Equals("y"));
+                } while (ch.Equals("Y") || ch.Equals("y"));
 
 
+            }
         }
     }
 }
