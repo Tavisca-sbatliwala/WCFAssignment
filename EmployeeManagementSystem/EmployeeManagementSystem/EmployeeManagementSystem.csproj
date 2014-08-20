@@ -65,7 +65,7 @@
   <ItemGroup>
     <Compile Include="CustomBehaviorSection.cs" />
     <Compile Include="EmployeeServiceParameterInspector.cs" />
-    <Compile Include="ServiceException.cs" />
+    <Compile Include="EmployeeServiceFault.cs" />
     <Compile Include="EmployeeMangement.cs" />
     <Compile Include="IEmployeeRetrieve.cs" />
     <Compile Include="EmployeeService.svc.cs">

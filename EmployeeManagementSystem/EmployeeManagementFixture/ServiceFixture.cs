@@ -22,12 +22,12 @@ namespace EmployeeManagementFixture
     [TestClass]
     public class ServiceFixture
     {
-        private TestContext testContextInstance;
+        private TestContext _testcontextinstance;
 
         public TestContext TestContext
         {
-            get { return testContextInstance; }
-            set { testContextInstance = value; }
+            get { return _testcontextinstance; }
+            set { _testcontextinstance = value; }
         }
         /// <summary>
         /// It Clear the Employee List Before Running Each Test Cases
@@ -45,40 +45,44 @@ namespace EmployeeManagementFixture
         [TestMethod]
         public void AddAndRetrieveEmployeeDetails()
         {
-            var createClient = new EmployeeCreateClient("BasicHttpBinding_IEmployeeCreate");
-            var retrieveClient = new EmployeeRetrieveClient("WSHttpBinding_IEmployeeRetrieve");
+            using (var createClient = new EmployeeCreateClient("BasicHttpBinding_IEmployeeCreate"))
+            using (var retrieveClient = new EmployeeRetrieveClient("WSHttpBinding_IEmployeeRetrieve"))
+            {
 
-            var emp = createClient.CreateEmployee(1, "saif", "Hello..");
-            createClient.AddEmployee(emp);
+                var emp = createClient.CreateEmployee(1, "saif", "Hello..");
+                createClient.AddEmployee(emp);
 
-            var empDetails = retrieveClient.SearchById(1);
-            Assert.AreEqual(1, empDetails.EmpID);
-            Assert.AreEqual("saif", empDetails.EmpName);
-            Assert.AreEqual("Hello..", empDetails.Comment);
+                var empDetails = retrieveClient.SearchById(1);
+                Assert.AreEqual(1, empDetails.EmpID);
+                Assert.AreEqual("saif", empDetails.EmpName);
+                Assert.AreEqual("Hello..", empDetails.Comment);
+            }
         }
 
-   
+
         [TestMethod]
         public void AddAgainEmployeeDetails()
         {
-            var createClient = new EmployeeCreateClient("BasicHttpBinding_IEmployeeCreate");
-            var retrieveClient = new EmployeeRetrieveClient("WSHttpBinding_IEmployeeRetrieve");
+            using (var createClient = new EmployeeCreateClient("BasicHttpBinding_IEmployeeCreate"))
+            using (var retrieveClient = new EmployeeRetrieveClient("WSHttpBinding_IEmployeeRetrieve"))
+            {
 
-            var emp = createClient.CreateEmployee(2, "saifuddin", "Hello..Again..");
-            createClient.AddEmployee(emp);
+                var emp = createClient.CreateEmployee(2, "saifuddin", "Hello..Again..");
+                createClient.AddEmployee(emp);
 
-            var empTwo = createClient.CreateEmployee(1, "saif", "Hello..");
-            createClient.AddEmployee(empTwo);
+                var empTwo = createClient.CreateEmployee(1, "saif", "Hello..");
+                createClient.AddEmployee(empTwo);
 
-            var empOneDetails = retrieveClient.SearchById(1);
-            Assert.AreEqual(1, empOneDetails.EmpID);
-            Assert.AreEqual("saif", empOneDetails.EmpName);
-            Assert.AreEqual("Hello..", empOneDetails.Comment);
+                var empOneDetails = retrieveClient.SearchById(1);
+                Assert.AreEqual(1, empOneDetails.EmpID);
+                Assert.AreEqual("saif", empOneDetails.EmpName);
+                Assert.AreEqual("Hello..", empOneDetails.Comment);
 
-            var empTwoDetails = retrieveClient.SearchById(2);
-            Assert.AreEqual(2, empTwoDetails.EmpID);
-            Assert.AreEqual("saifuddin", empTwoDetails.EmpName);
-            Assert.AreEqual("Hello..Again..", empTwoDetails.Comment);
+                var empTwoDetails = retrieveClient.SearchById(2);
+                Assert.AreEqual(2, empTwoDetails.EmpID);
+                Assert.AreEqual("saifuddin", empTwoDetails.EmpName);
+                Assert.AreEqual("Hello..Again..", empTwoDetails.Comment);
+            }
         }
 
         /// <summary>
@@ -87,17 +91,17 @@ namespace EmployeeManagementFixture
         [TestMethod]
         public void AddCommentForExistingEmployee()
         {
-            var createClient = new EmployeeCreateClient("BasicHttpBinding_IEmployeeCreate");
-            var retrieveClient = new EmployeeRetrieveClient("WSHttpBinding_IEmployeeRetrieve");
+            using (var createClient = new EmployeeCreateClient("BasicHttpBinding_IEmployeeCreate"))
+            {
 
-            var emp = createClient.CreateEmployee(1, "saif", "Hello..");
-            createClient.AddEmployee(emp);
+                var emp = createClient.CreateEmployee(1, "saif", "Hello..");
+                createClient.AddEmployee(emp);
 
-            var empModified = createClient.ModifyComment(1, "Modified Hello...");
-            Assert.AreEqual(1, empModified.EmpID);
-            Assert.AreEqual("saif", empModified.EmpName);
-            Assert.AreEqual("Modified Hello...", empModified.Comment);
-
+                var empModified = createClient.ModifyComment(1, "Modified Hello...");
+                Assert.AreEqual(1, empModified.EmpID);
+                Assert.AreEqual("saif", empModified.EmpName);
+                Assert.AreEqual("Modified Hello...", empModified.Comment);
+            }
         }
         /// <summary>
         /// Test Case for Retrieving Details of Employee , if there Comment is not null
@@ -106,23 +110,25 @@ namespace EmployeeManagementFixture
         [TestMethod]
         public void GetAllEmployeeWithComment()
         {
-            var createClient = new EmployeeCreateClient("BasicHttpBinding_IEmployeeCreate");
-            var retrieveClient = new EmployeeRetrieveClient("WSHttpBinding_IEmployeeRetrieve");
+            using (var createClient = new EmployeeCreateClient("BasicHttpBinding_IEmployeeCreate"))
+            using (var retrieveClient = new EmployeeRetrieveClient("WSHttpBinding_IEmployeeRetrieve"))
+            {
 
-            var emp = createClient.CreateEmployee(2, "saifuddin", "Hello..Again..");
-            createClient.AddEmployee(emp);
+                var emp = createClient.CreateEmployee(2, "saifuddin", "Hello..Again..");
+                createClient.AddEmployee(emp);
 
-            var empTwo = createClient.CreateEmployee(1, "saif", "Hello..");
-            createClient.AddEmployee(empTwo);
+                var empTwo = createClient.CreateEmployee(1, "saif", "Hello..");
+                createClient.AddEmployee(empTwo);
 
-            var empThree = createClient.CreateEmployee(3, "saifBatliwala", null);
-            createClient.AddEmployee(empThree);
+                var empThree = createClient.CreateEmployee(3, "saifBatliwala", null);
+                createClient.AddEmployee(empThree);
 
-            var empFour = createClient.CreateEmployee(4, "Batliwala", null);
-            createClient.AddEmployee(empFour);
+                var empFour = createClient.CreateEmployee(4, "Batliwala", null);
+                createClient.AddEmployee(empFour);
 
-            EmployeeManagement[] employee = retrieveClient.GetAllEmployeeWithComment();
-            Assert.AreEqual(2, employee.Length);
+                EmployeeManagement[] employee = retrieveClient.GetAllEmployeeWithComment();
+                Assert.AreEqual(2, employee.Length);
+            }
         }
 
         /// <summary>
@@ -131,23 +137,25 @@ namespace EmployeeManagementFixture
         [TestMethod]
         public void GetAllEmployee()
         {
-            var createClient = new EmployeeCreateClient("BasicHttpBinding_IEmployeeCreate");
-            var retrieveClient = new EmployeeRetrieveClient("WSHttpBinding_IEmployeeRetrieve");
+            using (var createClient = new EmployeeCreateClient("BasicHttpBinding_IEmployeeCreate"))
+            using (var retrieveClient = new EmployeeRetrieveClient("WSHttpBinding_IEmployeeRetrieve"))
+            {
 
-            var emp = createClient.CreateEmployee(2, "saifuddin", "Hello..Again..");
-            createClient.AddEmployee(emp);
+                var emp = createClient.CreateEmployee(2, "saifuddin", "Hello..Again..");
+                createClient.AddEmployee(emp);
 
-            var empTwo = createClient.CreateEmployee(1, "saif", "Hello..");
-            createClient.AddEmployee(empTwo);
+                var empTwo = createClient.CreateEmployee(1, "saif", "Hello..");
+                createClient.AddEmployee(empTwo);
 
-            var empThree = createClient.CreateEmployee(3, "saifBatliwala", null);
-            createClient.AddEmployee(empThree);
+                var empThree = createClient.CreateEmployee(3, "saifBatliwala", null);
+                createClient.AddEmployee(empThree);
 
-            var empFour = createClient.CreateEmployee(4, "Batliwala", null);
-            createClient.AddEmployee(empFour);
+                var empFour = createClient.CreateEmployee(4, "Batliwala", null);
+                createClient.AddEmployee(empFour);
 
-            EmployeeManagement[] employee = retrieveClient.GetAllEmployee();
-            Assert.AreEqual(4, employee.Length);
+                EmployeeManagement[] employee = retrieveClient.GetAllEmployee();
+                Assert.AreEqual(4, employee.Length);
+            }
         }
 
         /// <summary>
@@ -156,19 +164,21 @@ namespace EmployeeManagementFixture
         [TestMethod]
         public void RetrieveEmployeeByName()
         {
-            var createClient = new EmployeeCreateClient("BasicHttpBinding_IEmployeeCreate");
-            var retrieveClient = new EmployeeRetrieveClient("WSHttpBinding_IEmployeeRetrieve");
+            using (var createClient = new EmployeeCreateClient("BasicHttpBinding_IEmployeeCreate"))
+            using (var retrieveClient = new EmployeeRetrieveClient("WSHttpBinding_IEmployeeRetrieve"))
+            {
 
-            var emp = createClient.CreateEmployee(2, "saifuddin", "Hello..Again..");
-            createClient.AddEmployee(emp);
+                var emp = createClient.CreateEmployee(2, "saifuddin", "Hello..Again..");
+                createClient.AddEmployee(emp);
 
-            var empTwo = createClient.CreateEmployee(1, "saif", "Hello..");
-            createClient.AddEmployee(empTwo);
+                var empTwo = createClient.CreateEmployee(1, "saif", "Hello..");
+                createClient.AddEmployee(empTwo);
 
-            var result = retrieveClient.SearchByName("saif");
-            Assert.AreEqual(1, result.EmpID);
-            Assert.AreEqual("saif", result.EmpName);
-            Assert.AreEqual("Hello..", result.Comment);
+                var result = retrieveClient.SearchByName("saif");
+                Assert.AreEqual(1, result.EmpID);
+                Assert.AreEqual("saif", result.EmpName);
+                Assert.AreEqual("Hello..", result.Comment);
+            }
         }
         /// <summary>
         /// Test Case for Retrieving Details of Employee by using Employee ID
@@ -177,19 +187,21 @@ namespace EmployeeManagementFixture
         [TestMethod]
         public void RetrieveEmployeeByID()
         {
-            var createClient = new EmployeeCreateClient("BasicHttpBinding_IEmployeeCreate");
-            var retrieveClient = new EmployeeRetrieveClient("WSHttpBinding_IEmployeeRetrieve");
+            using (var createClient = new EmployeeCreateClient("BasicHttpBinding_IEmployeeCreate"))
+            using (var retrieveClient = new EmployeeRetrieveClient("WSHttpBinding_IEmployeeRetrieve"))
+            {
 
-            var emp = createClient.CreateEmployee(2, "saifuddin", "Hello..Again..");
-            createClient.AddEmployee(emp);
+                var emp = createClient.CreateEmployee(2, "saifuddin", "Hello..Again..");
+                createClient.AddEmployee(emp);
 
-            var empTwo = createClient.CreateEmployee(1, "saif", "Hello..");
-            createClient.AddEmployee(empTwo);
+                var empTwo = createClient.CreateEmployee(1, "saif", "Hello..");
+                createClient.AddEmployee(empTwo);
 
-            var result = retrieveClient.SearchById(2);
-            Assert.AreEqual(2, result.EmpID);
-            Assert.AreEqual("saifuddin", result.EmpName);
-            Assert.AreEqual("Hello..Again..", result.Comment);
+                var result = retrieveClient.SearchById(2);
+                Assert.AreEqual(2, result.EmpID);
+                Assert.AreEqual("saifuddin", result.EmpName);
+                Assert.AreEqual("Hello..Again..", result.Comment);
+            }
         }
 
         /// <summary>
@@ -199,18 +211,20 @@ namespace EmployeeManagementFixture
         [TestMethod]
         public void RemoveEmployeeById()
         {
-            var createClient = new EmployeeCreateClient("BasicHttpBinding_IEmployeeCreate");
-            var retrieveClient = new EmployeeRetrieveClient("WSHttpBinding_IEmployeeRetrieve");
+            using (var createClient = new EmployeeCreateClient("BasicHttpBinding_IEmployeeCreate"))
+            using (var retrieveClient = new EmployeeRetrieveClient("WSHttpBinding_IEmployeeRetrieve"))
+            {
 
-            var emp = createClient.CreateEmployee(2, "saifuddin", "Hello..Again..");
-            createClient.AddEmployee(emp);
+                var emp = createClient.CreateEmployee(2, "saifuddin", "Hello..Again..");
+                createClient.AddEmployee(emp);
 
-            var empTwo = createClient.CreateEmployee(1, "saif", "Hello..");
-            createClient.AddEmployee(empTwo);
+                var empTwo = createClient.CreateEmployee(1, "saif", "Hello..");
+                createClient.AddEmployee(empTwo);
 
-            createClient.RemoveEmployee(1);
-            EmployeeManagement[] employee = retrieveClient.GetAllEmployee();
-            Assert.AreEqual(1, employee.Length);
+                createClient.RemoveEmployee(1);
+                EmployeeManagement[] employee = retrieveClient.GetAllEmployee();
+                Assert.AreEqual(1, employee.Length);
+            }
         }
 
         /// <summary>
@@ -222,13 +236,13 @@ namespace EmployeeManagementFixture
         public void ModifyCommentWhenEmployeeNotExits()
         {
 
-            var createClient = new EmployeeCreateClient("BasicHttpBinding_IEmployeeCreate");
-            var retrieveClient = new EmployeeRetrieveClient("WSHttpBinding_IEmployeeRetrieve");
+            using (var createClient = new EmployeeCreateClient("BasicHttpBinding_IEmployeeCreate"))
+            {
+                var emp = createClient.CreateEmployee(1, "saifuddin", "Hello..Again..");
+                createClient.AddEmployee(emp);
 
-            var emp = createClient.CreateEmployee(1, "saifuddin", "Hello..Again..");
-            createClient.AddEmployee(emp);
-
-            var empModified = createClient.ModifyComment(6, "Modified Hello...");
+                var empModified = createClient.ModifyComment(6, "Modified Hello...");
+            }
         }
 
         /// <summary>
@@ -240,12 +254,12 @@ namespace EmployeeManagementFixture
         public void GetEmployeeWhenNoEmployeeExits()
         {
 
-            var createClient = new EmployeeCreateClient("BasicHttpBinding_IEmployeeCreate");
-            var retrieveClient = new EmployeeRetrieveClient("WSHttpBinding_IEmployeeRetrieve");
+            using (var retrieveClient = new EmployeeRetrieveClient("WSHttpBinding_IEmployeeRetrieve"))
+            {
 
-            EmployeeManagement[] employee = retrieveClient.GetAllEmployee();
-            Assert.AreEqual(0, employee.Length);
-            
+                EmployeeManagement[] employee = retrieveClient.GetAllEmployee();
+                Assert.AreEqual(0, employee.Length);
+            }
         }
 
         /// <summary>
@@ -257,11 +271,10 @@ namespace EmployeeManagementFixture
         public void RemoveEmployeeWhenEmployeeNotExists()
         {
 
-            var createClient = new EmployeeCreateClient("BasicHttpBinding_IEmployeeCreate");
-            var retrieveClient = new EmployeeRetrieveClient("WSHttpBinding_IEmployeeRetrieve");
-
-            createClient.RemoveEmployee(1);
-
+            using (var createClient = new EmployeeCreateClient("BasicHttpBinding_IEmployeeCreate"))
+            {
+                createClient.RemoveEmployee(1);
+            }
         }
 
         /// <summary>
@@ -273,15 +286,14 @@ namespace EmployeeManagementFixture
         public void CreateEmployeeWhenItsAlreadyExists()
         {
 
-            var createClient = new EmployeeCreateClient("BasicHttpBinding_IEmployeeCreate");
-            var retrieveClient = new EmployeeRetrieveClient("WSHttpBinding_IEmployeeRetrieve");
+            using (var createClient = new EmployeeCreateClient("BasicHttpBinding_IEmployeeCreate"))
+            {
+                var emp = createClient.CreateEmployee(1, "saifuddin", "Hello..Again..");
+                createClient.AddEmployee(emp);
 
-            var emp = createClient.CreateEmployee(1, "saifuddin", "Hello..Again..");
-            createClient.AddEmployee(emp);
-
-            var empOne = createClient.CreateEmployee(1, "saifuddin", "Hello..Again..");
-            createClient.AddEmployee(empOne);
-            
+                var empOne = createClient.CreateEmployee(1, "saifuddin", "Hello..Again..");
+                createClient.AddEmployee(empOne);
+            }
         }
 
         [TestMethod]
@@ -289,26 +301,24 @@ namespace EmployeeManagementFixture
         public void CreateEmployeeWithInvalidEmployeeID()
         {
 
-            var createClient = new EmployeeCreateClient("BasicHttpBinding_IEmployeeCreate");
-            var retrieveClient = new EmployeeRetrieveClient("WSHttpBinding_IEmployeeRetrieve");
-
-            var emp = createClient.CreateEmployee(-1, "saifuddin", "Hello..Again..");
-            createClient.AddEmployee(emp);
+            using (var createClient = new EmployeeCreateClient("BasicHttpBinding_IEmployeeCreate"))
+            {
+                var emp = createClient.CreateEmployee(-1, "saifuddin", "Hello..Again..");
+                createClient.AddEmployee(emp);
+            }
         }
-
 
         [TestMethod]
         [ExpectedException(typeof(FaultException<EmployeeServiceFault>))]
         public void CreateEmployeeWithInvalidEmployeeName()
         {
 
-            var createClient = new EmployeeCreateClient("BasicHttpBinding_IEmployeeCreate");
-            var retrieveClient = new EmployeeRetrieveClient("WSHttpBinding_IEmployeeRetrieve");
-
-            var emp = createClient.CreateEmployee(1, "sai12321", "Hello..Again..");
-            createClient.AddEmployee(emp);
+            using (var createClient = new EmployeeCreateClient("BasicHttpBinding_IEmployeeCreate"))
+            {
+                var emp = createClient.CreateEmployee(1, "sai12321", "Hello..Again..");
+                createClient.AddEmployee(emp);
+            }
         }
-
 
         [TestMethod]
         [DeploymentItem(@"D:\WCFAssignment\EmployeeManagementSystem\EmployeeManagementFixture\EmployeeXMLData.xml")]
@@ -318,20 +328,21 @@ namespace EmployeeManagementFixture
                             DataAccessMethod.Sequential)]
         public void CreateEmployeeUsingDataSource()
         {
-            var createClient = new EmployeeCreateClient("BasicHttpBinding_IEmployeeCreate");
-            var retrieveClient = new EmployeeRetrieveClient("WSHttpBinding_IEmployeeRetrieve");
-            int empId = Int32.Parse((string)testContextInstance.DataRow["EmployeeId"]);
-            string empName = testContextInstance.DataRow["EmployeeName"].ToString();
-            string empComment = testContextInstance.DataRow["EmployeeComment"].ToString();
-            var emp = createClient.CreateEmployee(empId,empName,empComment);
-            createClient.AddEmployee(emp);
-            
-            var empOneDetails = retrieveClient.SearchById(empId);
+            using (var createClient = new EmployeeCreateClient("BasicHttpBinding_IEmployeeCreate"))
+            using (var retrieveClient = new EmployeeRetrieveClient("WSHttpBinding_IEmployeeRetrieve"))
+            {
+                int empId = Int32.Parse((string)_testcontextinstance.DataRow["EmployeeId"]);
+                string empName = _testcontextinstance.DataRow["EmployeeName"].ToString();
+                string empComment = _testcontextinstance.DataRow["EmployeeComment"].ToString();
+                var emp = createClient.CreateEmployee(empId, empName, empComment);
+                createClient.AddEmployee(emp);
 
-            Assert.AreEqual(1, empOneDetails.EmpID);
-            Assert.AreEqual("saif", empOneDetails.EmpName);
-            Assert.AreEqual("Hello", empOneDetails.Comment);
+                var empOneDetails = retrieveClient.SearchById(empId);
 
+                Assert.AreEqual(1, empOneDetails.EmpID);
+                Assert.AreEqual("saif", empOneDetails.EmpName);
+                Assert.AreEqual("Hello", empOneDetails.Comment);
+            }
         }
 
     }
