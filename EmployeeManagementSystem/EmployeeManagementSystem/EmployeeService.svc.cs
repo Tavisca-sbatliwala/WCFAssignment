@@ -57,9 +57,9 @@ namespace EmployeeManagementSystem
         public void RemoveEmployee(int id)
         {
             EmployeeServiceFault fault = new EmployeeServiceFault();
-            if (_emplist.Any(e => e.EmpID == id))
+            if (_emplist.Any(e => e.EmployeeID == id))
             {
-                _emplist.Remove(_emplist.Find(e => e.EmpID.Equals(id)));
+                _emplist.Remove(_emplist.Find(e => e.EmployeeID.Equals(id)));
             }
             else
             {
@@ -80,9 +80,9 @@ namespace EmployeeManagementSystem
         public EmployeeManagement GetEmployee(int id)
         {
             EmployeeServiceFault fault = new EmployeeServiceFault();
-            if (_emplist.Any(e => e.EmpID == id))
+            if (_emplist.Any(e => e.EmployeeID == id))
             {
-                return _emplist.Find(e => e.EmpID.Equals(id));
+                return _emplist.Find(e => e.EmployeeID.Equals(id));
             }
             else
             {
@@ -104,7 +104,7 @@ namespace EmployeeManagementSystem
         public EmployeeManagement CreateEmployee(int id, string name, string comment)
         {
             EmployeeServiceFault fault = new EmployeeServiceFault();
-            if (_emplist.Any(e => e.EmpID == id))
+            if (_emplist.Any(e => e.EmployeeID == id))
             {
                 fault.FaultId = 101;
                 fault.FaultMessage = "Employee Already Exists";
@@ -113,8 +113,8 @@ namespace EmployeeManagementSystem
             }
             else
             {
-                empObj.EmpID = id;
-                empObj.EmpName = name;
+                empObj.EmployeeID = id;
+                empObj.EmployeeName = name;
                 empObj.Comment = comment;
                 empObj.TimeSubmitted = DateTime.Now;
                 return empObj;
@@ -130,9 +130,9 @@ namespace EmployeeManagementSystem
         public EmployeeManagement GetEmployee(string name)
         {
             EmployeeServiceFault fault = new EmployeeServiceFault();
-            if (_emplist.Any(e => e.EmpName == name))
+            if (_emplist.Any(e => e.EmployeeName == name))
             {
-                return _emplist.Find(e => e.EmpName.Equals(name));
+                return _emplist.Find(e => e.EmployeeName.Equals(name));
             }
             else
             {
@@ -153,9 +153,9 @@ namespace EmployeeManagementSystem
         public EmployeeManagement ModifyComment(int id, string comment)
         {
             EmployeeServiceFault fault = new EmployeeServiceFault();
-            if (_emplist.Any(e => e.EmpID == id))
+            if (_emplist.Any(e => e.EmployeeID == id))
             {
-                var empToModify = _emplist.Find(e => e.EmpID.Equals(id));
+                var empToModify = _emplist.Find(e => e.EmployeeID.Equals(id));
                 empToModify.Comment = comment;
                 return empToModify;
             }
