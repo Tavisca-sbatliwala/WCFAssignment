@@ -26,10 +26,10 @@ namespace Client.ClientServiceReference {
         private string CommentField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int EmpIDField;
+        private int EmployeeIDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string EmpNameField;
+        private string EmployeeNameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.DateTime TimeSubmittedField;
@@ -58,27 +58,27 @@ namespace Client.ClientServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int EmpID {
+        public int EmployeeID {
             get {
-                return this.EmpIDField;
+                return this.EmployeeIDField;
             }
             set {
-                if ((this.EmpIDField.Equals(value) != true)) {
-                    this.EmpIDField = value;
-                    this.RaisePropertyChanged("EmpID");
+                if ((this.EmployeeIDField.Equals(value) != true)) {
+                    this.EmployeeIDField = value;
+                    this.RaisePropertyChanged("EmployeeID");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string EmpName {
+        public string EmployeeName {
             get {
-                return this.EmpNameField;
+                return this.EmployeeNameField;
             }
             set {
-                if ((object.ReferenceEquals(this.EmpNameField, value) != true)) {
-                    this.EmpNameField = value;
-                    this.RaisePropertyChanged("EmpName");
+                if ((object.ReferenceEquals(this.EmployeeNameField, value) != true)) {
+                    this.EmployeeNameField = value;
+                    this.RaisePropertyChanged("EmployeeName");
                 }
             }
         }
@@ -294,19 +294,19 @@ namespace Client.ClientServiceReference {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="ClientServiceReference.IEmployeeRetrieve")]
     public interface IEmployeeRetrieve {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeRetrieve/SearchById", ReplyAction="http://tempuri.org/IEmployeeRetrieve/SearchByIdResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(Client.ClientServiceReference.EmployeeServiceFault), Action="http://tempuri.org/IEmployeeRetrieve/SearchByIdEmployeeServiceFaultFault", Name="EmployeeServiceFault", Namespace="http://schemas.datacontract.org/2004/07/EmployeeManagementSystem")]
-        Client.ClientServiceReference.EmployeeManagement SearchById(int id);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeRetrieve/GetById", ReplyAction="http://tempuri.org/IEmployeeRetrieve/GetByIdResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Client.ClientServiceReference.EmployeeServiceFault), Action="http://tempuri.org/IEmployeeRetrieve/GetByIdEmployeeServiceFaultFault", Name="EmployeeServiceFault", Namespace="http://schemas.datacontract.org/2004/07/EmployeeManagementSystem")]
+        Client.ClientServiceReference.EmployeeManagement GetById(int id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeRetrieve/SearchById", ReplyAction="http://tempuri.org/IEmployeeRetrieve/SearchByIdResponse")]
-        System.Threading.Tasks.Task<Client.ClientServiceReference.EmployeeManagement> SearchByIdAsync(int id);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeRetrieve/GetById", ReplyAction="http://tempuri.org/IEmployeeRetrieve/GetByIdResponse")]
+        System.Threading.Tasks.Task<Client.ClientServiceReference.EmployeeManagement> GetByIdAsync(int id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeRetrieve/SearchByName", ReplyAction="http://tempuri.org/IEmployeeRetrieve/SearchByNameResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(Client.ClientServiceReference.EmployeeServiceFault), Action="http://tempuri.org/IEmployeeRetrieve/SearchByNameEmployeeServiceFaultFault", Name="EmployeeServiceFault", Namespace="http://schemas.datacontract.org/2004/07/EmployeeManagementSystem")]
-        Client.ClientServiceReference.EmployeeManagement SearchByName(string name);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeRetrieve/GetByName", ReplyAction="http://tempuri.org/IEmployeeRetrieve/GetByNameResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(Client.ClientServiceReference.EmployeeServiceFault), Action="http://tempuri.org/IEmployeeRetrieve/GetByNameEmployeeServiceFaultFault", Name="EmployeeServiceFault", Namespace="http://schemas.datacontract.org/2004/07/EmployeeManagementSystem")]
+        Client.ClientServiceReference.EmployeeManagement GetByName(string name);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeRetrieve/SearchByName", ReplyAction="http://tempuri.org/IEmployeeRetrieve/SearchByNameResponse")]
-        System.Threading.Tasks.Task<Client.ClientServiceReference.EmployeeManagement> SearchByNameAsync(string name);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeRetrieve/GetByName", ReplyAction="http://tempuri.org/IEmployeeRetrieve/GetByNameResponse")]
+        System.Threading.Tasks.Task<Client.ClientServiceReference.EmployeeManagement> GetByNameAsync(string name);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeRetrieve/GetAllEmployee", ReplyAction="http://tempuri.org/IEmployeeRetrieve/GetAllEmployeeResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(Client.ClientServiceReference.EmployeeServiceFault), Action="http://tempuri.org/IEmployeeRetrieve/GetAllEmployeeEmployeeServiceFaultFault", Name="EmployeeServiceFault", Namespace="http://schemas.datacontract.org/2004/07/EmployeeManagementSystem")]
@@ -351,20 +351,20 @@ namespace Client.ClientServiceReference {
                 base(binding, remoteAddress) {
         }
         
-        public Client.ClientServiceReference.EmployeeManagement SearchById(int id) {
-            return base.Channel.SearchById(id);
+        public Client.ClientServiceReference.EmployeeManagement GetById(int id) {
+            return base.Channel.GetById(id);
         }
         
-        public System.Threading.Tasks.Task<Client.ClientServiceReference.EmployeeManagement> SearchByIdAsync(int id) {
-            return base.Channel.SearchByIdAsync(id);
+        public System.Threading.Tasks.Task<Client.ClientServiceReference.EmployeeManagement> GetByIdAsync(int id) {
+            return base.Channel.GetByIdAsync(id);
         }
         
-        public Client.ClientServiceReference.EmployeeManagement SearchByName(string name) {
-            return base.Channel.SearchByName(name);
+        public Client.ClientServiceReference.EmployeeManagement GetByName(string name) {
+            return base.Channel.GetByName(name);
         }
         
-        public System.Threading.Tasks.Task<Client.ClientServiceReference.EmployeeManagement> SearchByNameAsync(string name) {
-            return base.Channel.SearchByNameAsync(name);
+        public System.Threading.Tasks.Task<Client.ClientServiceReference.EmployeeManagement> GetByNameAsync(string name) {
+            return base.Channel.GetByNameAsync(name);
         }
         
         public Client.ClientServiceReference.EmployeeManagement[] GetAllEmployee() {

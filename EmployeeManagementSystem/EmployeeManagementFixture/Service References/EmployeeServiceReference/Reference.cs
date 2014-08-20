@@ -122,19 +122,19 @@ namespace EmployeeManagementFixture.EmployeeServiceReference {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="EmployeeServiceReference.IEmployeeRetrieve")]
     public interface IEmployeeRetrieve {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeRetrieve/SearchById", ReplyAction="http://tempuri.org/IEmployeeRetrieve/SearchByIdResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(EmployeeManagementSystem.EmployeeServiceFault), Action="http://tempuri.org/IEmployeeRetrieve/SearchByIdEmployeeServiceFaultFault", Name="EmployeeServiceFault", Namespace="http://schemas.datacontract.org/2004/07/EmployeeManagementSystem")]
-        EmployeeManagementSystem.EmployeeManagement SearchById(int id);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeRetrieve/GetById", ReplyAction="http://tempuri.org/IEmployeeRetrieve/GetByIdResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(EmployeeManagementSystem.EmployeeServiceFault), Action="http://tempuri.org/IEmployeeRetrieve/GetByIdEmployeeServiceFaultFault", Name="EmployeeServiceFault", Namespace="http://schemas.datacontract.org/2004/07/EmployeeManagementSystem")]
+        EmployeeManagementSystem.EmployeeManagement GetById(int id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeRetrieve/SearchById", ReplyAction="http://tempuri.org/IEmployeeRetrieve/SearchByIdResponse")]
-        System.Threading.Tasks.Task<EmployeeManagementSystem.EmployeeManagement> SearchByIdAsync(int id);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeRetrieve/GetById", ReplyAction="http://tempuri.org/IEmployeeRetrieve/GetByIdResponse")]
+        System.Threading.Tasks.Task<EmployeeManagementSystem.EmployeeManagement> GetByIdAsync(int id);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeRetrieve/SearchByName", ReplyAction="http://tempuri.org/IEmployeeRetrieve/SearchByNameResponse")]
-        [System.ServiceModel.FaultContractAttribute(typeof(EmployeeManagementSystem.EmployeeServiceFault), Action="http://tempuri.org/IEmployeeRetrieve/SearchByNameEmployeeServiceFaultFault", Name="EmployeeServiceFault", Namespace="http://schemas.datacontract.org/2004/07/EmployeeManagementSystem")]
-        EmployeeManagementSystem.EmployeeManagement SearchByName(string name);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeRetrieve/GetByName", ReplyAction="http://tempuri.org/IEmployeeRetrieve/GetByNameResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(EmployeeManagementSystem.EmployeeServiceFault), Action="http://tempuri.org/IEmployeeRetrieve/GetByNameEmployeeServiceFaultFault", Name="EmployeeServiceFault", Namespace="http://schemas.datacontract.org/2004/07/EmployeeManagementSystem")]
+        EmployeeManagementSystem.EmployeeManagement GetByName(string name);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeRetrieve/SearchByName", ReplyAction="http://tempuri.org/IEmployeeRetrieve/SearchByNameResponse")]
-        System.Threading.Tasks.Task<EmployeeManagementSystem.EmployeeManagement> SearchByNameAsync(string name);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeRetrieve/GetByName", ReplyAction="http://tempuri.org/IEmployeeRetrieve/GetByNameResponse")]
+        System.Threading.Tasks.Task<EmployeeManagementSystem.EmployeeManagement> GetByNameAsync(string name);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEmployeeRetrieve/GetAllEmployee", ReplyAction="http://tempuri.org/IEmployeeRetrieve/GetAllEmployeeResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(EmployeeManagementSystem.EmployeeServiceFault), Action="http://tempuri.org/IEmployeeRetrieve/GetAllEmployeeEmployeeServiceFaultFault", Name="EmployeeServiceFault", Namespace="http://schemas.datacontract.org/2004/07/EmployeeManagementSystem")]
@@ -179,20 +179,20 @@ namespace EmployeeManagementFixture.EmployeeServiceReference {
                 base(binding, remoteAddress) {
         }
         
-        public EmployeeManagementSystem.EmployeeManagement SearchById(int id) {
-            return base.Channel.SearchById(id);
+        public EmployeeManagementSystem.EmployeeManagement GetById(int id) {
+            return base.Channel.GetById(id);
         }
         
-        public System.Threading.Tasks.Task<EmployeeManagementSystem.EmployeeManagement> SearchByIdAsync(int id) {
-            return base.Channel.SearchByIdAsync(id);
+        public System.Threading.Tasks.Task<EmployeeManagementSystem.EmployeeManagement> GetByIdAsync(int id) {
+            return base.Channel.GetByIdAsync(id);
         }
         
-        public EmployeeManagementSystem.EmployeeManagement SearchByName(string name) {
-            return base.Channel.SearchByName(name);
+        public EmployeeManagementSystem.EmployeeManagement GetByName(string name) {
+            return base.Channel.GetByName(name);
         }
         
-        public System.Threading.Tasks.Task<EmployeeManagementSystem.EmployeeManagement> SearchByNameAsync(string name) {
-            return base.Channel.SearchByNameAsync(name);
+        public System.Threading.Tasks.Task<EmployeeManagementSystem.EmployeeManagement> GetByNameAsync(string name) {
+            return base.Channel.GetByNameAsync(name);
         }
         
         public EmployeeManagementSystem.EmployeeManagement[] GetAllEmployee() {

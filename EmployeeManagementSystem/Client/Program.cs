@@ -78,8 +78,8 @@ namespace Client
                         {
                             Console.WriteLine("Enter Name of Employee to Get Employee Details : ");
                             var name = Console.ReadLine();
-                            var getEmp = _clientretrive.SearchByName(name);
-                            Console.WriteLine(getEmp.EmpID + " " + getEmp.EmpName + " " + getEmp.Comment + " " + getEmp.TimeSubmitted);
+                            var getEmp = _clientretrive.GetByName(name);
+                            Console.WriteLine(getEmp.EmployeeID + " " + getEmp.EmployeeName + " " + getEmp.Comment + " " + getEmp.TimeSubmitted);
                             Console.WriteLine("Employee Details Found...");
                         }
                         catch (FaultException<EmployeeServiceFault> ex)
@@ -96,8 +96,8 @@ namespace Client
                         {
                             Console.WriteLine("Enter Employee Id to Search Employee : ");
                             var searchId = int.Parse(Console.ReadLine());
-                            var getEmp1 = _clientretrive.SearchById(searchId);
-                            Console.WriteLine(getEmp1.EmpID + " " + getEmp1.EmpName + " " + getEmp1.Comment + " " + getEmp1.TimeSubmitted);
+                            var getEmp1 = _clientretrive.GetById(searchId);
+                            Console.WriteLine(getEmp1.EmployeeID + " " + getEmp1.EmployeeName + " " + getEmp1.Comment + " " + getEmp1.TimeSubmitted);
                             Console.WriteLine("Employee Details Found...");
                         }
                         catch (FaultException<EmployeeServiceFault> ex)
@@ -117,7 +117,7 @@ namespace Client
 
                             foreach (EmployeeManagement em in employee)
                             {
-                                Console.WriteLine(em.EmpID + " " + em.EmpName + " " + em.Comment + " " + em.TimeSubmitted);
+                                Console.WriteLine(em.EmployeeID + " " + em.EmployeeName + " " + em.Comment + " " + em.TimeSubmitted);
                             }
                         }
                         catch (FaultException<EmployeeServiceFault> ex)

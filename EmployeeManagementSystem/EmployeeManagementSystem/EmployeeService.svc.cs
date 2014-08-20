@@ -13,11 +13,11 @@ namespace EmployeeManagementSystem
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)] //singleton
     public class EmployeeService : IEmployeeCreate, IEmployeeRetrieve
     {
-        EmployeeManagement empObj = new EmployeeManagement();
+        
         /// <summary>
         /// Created List for Storing Employee details
         /// </summary>
-        private static List<EmployeeManagement> _emplist = new List<EmployeeManagement>();
+        private static List<EmployeeManagement> _employeelist = new List<EmployeeManagement>();
 
         /// <summary>
         /// It Add Employee Object in List
@@ -25,7 +25,7 @@ namespace EmployeeManagementSystem
         /// <param name="emp">Employee Object</param>
         public void AddEmployee(EmployeeManagement emp)
         {
-            _emplist.Add(emp);
+            _employeelist.Add(emp);
         }
 
         /// <summary>
@@ -36,9 +36,9 @@ namespace EmployeeManagementSystem
         public List<EmployeeManagement> GetAllEmployee()
         {
             EmployeeServiceFault fault = new EmployeeServiceFault();
-            if (_emplist.Count() > 0)
+            if (_employeelist.Count() > 0)
             {
-                return _emplist;
+                return _employeelist;
             }
             else
             {
@@ -57,9 +57,9 @@ namespace EmployeeManagementSystem
         public void RemoveEmployee(int id)
         {
             EmployeeServiceFault fault = new EmployeeServiceFault();
-            if (_emplist.Any(e => e.EmployeeID == id))
+            if (_employeelist.Any(e => e.EmployeeID == id))
             {
-                _emplist.Remove(_emplist.Find(e => e.EmployeeID.Equals(id)));
+                _employeelist.Remove(_employeelist.Find(e => e.EmployeeID.Equals(id)));
             }
             else
             {
@@ -80,9 +80,9 @@ namespace EmployeeManagementSystem
         public EmployeeManagement GetEmployee(int id)
         {
             EmployeeServiceFault fault = new EmployeeServiceFault();
-            if (_emplist.Any(e => e.EmployeeID == id))
+            if (_employeelist.Any(e => e.EmployeeID == id))
             {
-                return _emplist.Find(e => e.EmployeeID.Equals(id));
+                return _employeelist.Find(e => e.EmployeeID.Equals(id));
             }
             else
             {
@@ -103,8 +103,9 @@ namespace EmployeeManagementSystem
 
         public EmployeeManagement CreateEmployee(int id, string name, string comment)
         {
+            EmployeeManagement employeeObj = new EmployeeManagement();
             EmployeeServiceFault fault = new EmployeeServiceFault();
-            if (_emplist.Any(e => e.EmployeeID == id))
+            if (_employeelist.Any(e => e.EmployeeID == id))
             {
                 fault.FaultId = 101;
                 fault.FaultMessage = "Employee Already Exists";
@@ -113,11 +114,11 @@ namespace EmployeeManagementSystem
             }
             else
             {
-                empObj.EmployeeID = id;
-                empObj.EmployeeName = name;
-                empObj.Comment = comment;
-                empObj.TimeSubmitted = DateTime.Now;
-                return empObj;
+                employeeObj.EmployeeID = id;
+                employeeObj.EmployeeName = name;
+                employeeObj.Comment = comment;
+                employeeObj.TimeSubmitted = DateTime.Now;
+                return employeeObj;
             }
         }
 
@@ -130,9 +131,9 @@ namespace EmployeeManagementSystem
         public EmployeeManagement GetEmployee(string name)
         {
             EmployeeServiceFault fault = new EmployeeServiceFault();
-            if (_emplist.Any(e => e.EmployeeName == name))
+            if (_employeelist.Any(e => e.EmployeeName == name))
             {
-                return _emplist.Find(e => e.EmployeeName.Equals(name));
+                return _employeelist.Find(e => e.EmployeeName.Equals(name));
             }
             else
             {
@@ -153,9 +154,9 @@ namespace EmployeeManagementSystem
         public EmployeeManagement ModifyComment(int id, string comment)
         {
             EmployeeServiceFault fault = new EmployeeServiceFault();
-            if (_emplist.Any(e => e.EmployeeID == id))
+            if (_employeelist.Any(e => e.EmployeeID == id))
             {
-                var empToModify = _emplist.Find(e => e.EmployeeID.Equals(id));
+                var empToModify = _employeelist.Find(e => e.EmployeeID.Equals(id));
                 empToModify.Comment = comment;
                 return empToModify;
             }
@@ -175,10 +176,10 @@ namespace EmployeeManagementSystem
         List<EmployeeManagement> IEmployeeRetrieve.GetAllEmployeeWithComment()
         {
             EmployeeServiceFault fault = new EmployeeServiceFault();
-            var selectedEmployee = _emplist.FindAll(e => e.Comment != null);
+            var selectedEmployee = _employeelist.FindAll(e => e.Comment != null);
             if (selectedEmployee.Count() > 0)
             {
-                return _emplist.FindAll(e => e.Comment != null);
+                return _employeelist.FindAll(e => e.Comment != null);
             }
             else
             {
@@ -194,7 +195,7 @@ namespace EmployeeManagementSystem
 
         public void ClearList()
         {
-            _emplist.Clear();
+            _employeelist.Clear();
         }
     }
 }

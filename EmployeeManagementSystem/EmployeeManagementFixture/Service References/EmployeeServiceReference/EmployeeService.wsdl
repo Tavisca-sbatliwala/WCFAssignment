@@ -96,7 +96,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IEmployeeRetrieve_SearchById_Input_policy">
+  <wsp:Policy wsu:Id="WSHttpBinding_IEmployeeRetrieve_GetById_Input_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -115,7 +115,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IEmployeeRetrieve_SearchById_output_policy">
+  <wsp:Policy wsu:Id="WSHttpBinding_IEmployeeRetrieve_GetById_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -134,7 +134,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IEmployeeRetrieve_SearchById_EmployeeServiceFaultFault_Fault">
+  <wsp:Policy wsu:Id="WSHttpBinding_IEmployeeRetrieve_GetById_EmployeeServiceFaultFault_Fault">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -153,7 +153,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IEmployeeRetrieve_SearchByName_Input_policy">
+  <wsp:Policy wsu:Id="WSHttpBinding_IEmployeeRetrieve_GetByName_Input_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -172,7 +172,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IEmployeeRetrieve_SearchByName_output_policy">
+  <wsp:Policy wsu:Id="WSHttpBinding_IEmployeeRetrieve_GetByName_output_policy">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -191,7 +191,7 @@
       </wsp:All>
     </wsp:ExactlyOne>
   </wsp:Policy>
-  <wsp:Policy wsu:Id="WSHttpBinding_IEmployeeRetrieve_SearchByName_EmployeeServiceFaultFault_Fault">
+  <wsp:Policy wsu:Id="WSHttpBinding_IEmployeeRetrieve_GetByName_EmployeeServiceFaultFault_Fault">
     <wsp:ExactlyOne>
       <wsp:All>
         <sp:SignedParts xmlns:sp="http://schemas.xmlsoap.org/ws/2005/07/securitypolicy">
@@ -373,22 +373,22 @@
   <wsdl:message name="IEmployeeCreate_ClearList_OutputMessage">
     <wsdl:part name="parameters" element="tns:ClearListResponse" />
   </wsdl:message>
-  <wsdl:message name="IEmployeeRetrieve_SearchById_InputMessage">
-    <wsdl:part name="parameters" element="tns:SearchById" />
+  <wsdl:message name="IEmployeeRetrieve_GetById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetById" />
   </wsdl:message>
-  <wsdl:message name="IEmployeeRetrieve_SearchById_OutputMessage">
-    <wsdl:part name="parameters" element="tns:SearchByIdResponse" />
+  <wsdl:message name="IEmployeeRetrieve_GetById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetByIdResponse" />
   </wsdl:message>
-  <wsdl:message name="IEmployeeRetrieve_SearchById_EmployeeServiceFaultFault_FaultMessage">
+  <wsdl:message name="IEmployeeRetrieve_GetById_EmployeeServiceFaultFault_FaultMessage">
     <wsdl:part xmlns:q5="http://schemas.datacontract.org/2004/07/EmployeeManagementSystem" name="detail" element="q5:EmployeeServiceFault" />
   </wsdl:message>
-  <wsdl:message name="IEmployeeRetrieve_SearchByName_InputMessage">
-    <wsdl:part name="parameters" element="tns:SearchByName" />
+  <wsdl:message name="IEmployeeRetrieve_GetByName_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetByName" />
   </wsdl:message>
-  <wsdl:message name="IEmployeeRetrieve_SearchByName_OutputMessage">
-    <wsdl:part name="parameters" element="tns:SearchByNameResponse" />
+  <wsdl:message name="IEmployeeRetrieve_GetByName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetByNameResponse" />
   </wsdl:message>
-  <wsdl:message name="IEmployeeRetrieve_SearchByName_EmployeeServiceFaultFault_FaultMessage">
+  <wsdl:message name="IEmployeeRetrieve_GetByName_EmployeeServiceFaultFault_FaultMessage">
     <wsdl:part xmlns:q6="http://schemas.datacontract.org/2004/07/EmployeeManagementSystem" name="detail" element="q6:EmployeeServiceFault" />
   </wsdl:message>
   <wsdl:message name="IEmployeeRetrieve_GetAllEmployee_InputMessage">
@@ -436,15 +436,15 @@
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IEmployeeRetrieve">
-    <wsdl:operation name="SearchById">
-      <wsdl:input wsaw:Action="http://tempuri.org/IEmployeeRetrieve/SearchById" message="tns:IEmployeeRetrieve_SearchById_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IEmployeeRetrieve/SearchByIdResponse" message="tns:IEmployeeRetrieve_SearchById_OutputMessage" />
-      <wsdl:fault wsaw:Action="http://tempuri.org/IEmployeeRetrieve/SearchByIdEmployeeServiceFaultFault" name="EmployeeServiceFaultFault" message="tns:IEmployeeRetrieve_SearchById_EmployeeServiceFaultFault_FaultMessage" />
+    <wsdl:operation name="GetById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEmployeeRetrieve/GetById" message="tns:IEmployeeRetrieve_GetById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEmployeeRetrieve/GetByIdResponse" message="tns:IEmployeeRetrieve_GetById_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IEmployeeRetrieve/GetByIdEmployeeServiceFaultFault" name="EmployeeServiceFaultFault" message="tns:IEmployeeRetrieve_GetById_EmployeeServiceFaultFault_FaultMessage" />
     </wsdl:operation>
-    <wsdl:operation name="SearchByName">
-      <wsdl:input wsaw:Action="http://tempuri.org/IEmployeeRetrieve/SearchByName" message="tns:IEmployeeRetrieve_SearchByName_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IEmployeeRetrieve/SearchByNameResponse" message="tns:IEmployeeRetrieve_SearchByName_OutputMessage" />
-      <wsdl:fault wsaw:Action="http://tempuri.org/IEmployeeRetrieve/SearchByNameEmployeeServiceFaultFault" name="EmployeeServiceFaultFault" message="tns:IEmployeeRetrieve_SearchByName_EmployeeServiceFaultFault_FaultMessage" />
+    <wsdl:operation name="GetByName">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEmployeeRetrieve/GetByName" message="tns:IEmployeeRetrieve_GetByName_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEmployeeRetrieve/GetByNameResponse" message="tns:IEmployeeRetrieve_GetByName_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IEmployeeRetrieve/GetByNameEmployeeServiceFaultFault" name="EmployeeServiceFaultFault" message="tns:IEmployeeRetrieve_GetByName_EmployeeServiceFaultFault_FaultMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetAllEmployee">
       <wsdl:input wsaw:Action="http://tempuri.org/IEmployeeRetrieve/GetAllEmployee" message="tns:IEmployeeRetrieve_GetAllEmployee_InputMessage" />
@@ -520,33 +520,33 @@
   <wsdl:binding name="WSHttpBinding_IEmployeeRetrieve" type="tns:IEmployeeRetrieve">
     <wsp:PolicyReference URI="#WSHttpBinding_IEmployeeRetrieve_policy" />
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="SearchById">
-      <soap12:operation soapAction="http://tempuri.org/IEmployeeRetrieve/SearchById" style="document" />
+    <wsdl:operation name="GetById">
+      <soap12:operation soapAction="http://tempuri.org/IEmployeeRetrieve/GetById" style="document" />
       <wsdl:input>
-        <wsp:PolicyReference URI="#WSHttpBinding_IEmployeeRetrieve_SearchById_Input_policy" />
+        <wsp:PolicyReference URI="#WSHttpBinding_IEmployeeRetrieve_GetById_Input_policy" />
         <soap12:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <wsp:PolicyReference URI="#WSHttpBinding_IEmployeeRetrieve_SearchById_output_policy" />
+        <wsp:PolicyReference URI="#WSHttpBinding_IEmployeeRetrieve_GetById_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
       <wsdl:fault name="EmployeeServiceFaultFault">
-        <wsp:PolicyReference URI="#WSHttpBinding_IEmployeeRetrieve_SearchById_EmployeeServiceFaultFault_Fault" />
+        <wsp:PolicyReference URI="#WSHttpBinding_IEmployeeRetrieve_GetById_EmployeeServiceFaultFault_Fault" />
         <soap12:fault use="literal" name="EmployeeServiceFaultFault" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
-    <wsdl:operation name="SearchByName">
-      <soap12:operation soapAction="http://tempuri.org/IEmployeeRetrieve/SearchByName" style="document" />
+    <wsdl:operation name="GetByName">
+      <soap12:operation soapAction="http://tempuri.org/IEmployeeRetrieve/GetByName" style="document" />
       <wsdl:input>
-        <wsp:PolicyReference URI="#WSHttpBinding_IEmployeeRetrieve_SearchByName_Input_policy" />
+        <wsp:PolicyReference URI="#WSHttpBinding_IEmployeeRetrieve_GetByName_Input_policy" />
         <soap12:body use="literal" />
       </wsdl:input>
       <wsdl:output>
-        <wsp:PolicyReference URI="#WSHttpBinding_IEmployeeRetrieve_SearchByName_output_policy" />
+        <wsp:PolicyReference URI="#WSHttpBinding_IEmployeeRetrieve_GetByName_output_policy" />
         <soap12:body use="literal" />
       </wsdl:output>
       <wsdl:fault name="EmployeeServiceFaultFault">
-        <wsp:PolicyReference URI="#WSHttpBinding_IEmployeeRetrieve_SearchByName_EmployeeServiceFaultFault_Fault" />
+        <wsp:PolicyReference URI="#WSHttpBinding_IEmployeeRetrieve_GetByName_EmployeeServiceFaultFault_Fault" />
         <soap12:fault use="literal" name="EmployeeServiceFaultFault" namespace="" />
       </wsdl:fault>
     </wsdl:operation>

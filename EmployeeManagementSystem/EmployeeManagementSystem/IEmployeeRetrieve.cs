@@ -19,7 +19,7 @@ namespace EmployeeManagementSystem
         /// <param name="id">Employee ID</param>
         /// <returns>Object of EmployeeManagement</returns>
 
-        [OperationContract(Name = "SearchById")]
+        [OperationContract(Name = "GetById")]
         [FaultContract(typeof(EmployeeServiceFault))]
         EmployeeManagement GetEmployee(int id);
         /// <summary>
@@ -28,7 +28,7 @@ namespace EmployeeManagementSystem
         /// <param name="name">Employee Name</param>
         /// <returns>Object of EmployeeManagement</returns>
         
-        [OperationContract(Name = "SearchByName")]
+        [OperationContract(Name = "GetByName")]
         [FaultContract(typeof(EmployeeServiceFault))]
         EmployeeManagement GetEmployee(string name);
         

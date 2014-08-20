@@ -52,7 +52,7 @@ namespace EmployeeManagementFixture
                 var emp = createClient.CreateEmployee(1, "saif", "Hello..");
                 createClient.AddEmployee(emp);
 
-                var empDetails = retrieveClient.SearchById(1);
+                var empDetails = retrieveClient.GetById(1);
                 Assert.AreEqual(1, empDetails.EmployeeID);
                 Assert.AreEqual("saif", empDetails.EmployeeName);
                 Assert.AreEqual("Hello..", empDetails.Comment);
@@ -73,12 +73,12 @@ namespace EmployeeManagementFixture
                 var empTwo = createClient.CreateEmployee(1, "saif", "Hello..");
                 createClient.AddEmployee(empTwo);
 
-                var empOneDetails = retrieveClient.SearchById(1);
+                var empOneDetails = retrieveClient.GetById(1);
                 Assert.AreEqual(1, empOneDetails.EmployeeID);
                 Assert.AreEqual("saif", empOneDetails.EmployeeName);
                 Assert.AreEqual("Hello..", empOneDetails.Comment);
 
-                var empTwoDetails = retrieveClient.SearchById(2);
+                var empTwoDetails = retrieveClient.GetById(2);
                 Assert.AreEqual(2, empTwoDetails.EmployeeID);
                 Assert.AreEqual("saifuddin", empTwoDetails.EmployeeName);
                 Assert.AreEqual("Hello..Again..", empTwoDetails.Comment);
@@ -174,7 +174,7 @@ namespace EmployeeManagementFixture
                 var empTwo = createClient.CreateEmployee(1, "saif", "Hello..");
                 createClient.AddEmployee(empTwo);
 
-                var result = retrieveClient.SearchByName("saif");
+                var result = retrieveClient.GetByName("saif");
                 Assert.AreEqual(1, result.EmployeeID);
                 Assert.AreEqual("saif", result.EmployeeName);
                 Assert.AreEqual("Hello..", result.Comment);
@@ -197,7 +197,7 @@ namespace EmployeeManagementFixture
                 var empTwo = createClient.CreateEmployee(1, "saif", "Hello..");
                 createClient.AddEmployee(empTwo);
 
-                var result = retrieveClient.SearchById(2);
+                var result = retrieveClient.GetById(2);
                 Assert.AreEqual(2, result.EmployeeID);
                 Assert.AreEqual("saifuddin", result.EmployeeName);
                 Assert.AreEqual("Hello..Again..", result.Comment);
@@ -337,7 +337,7 @@ namespace EmployeeManagementFixture
                 var emp = createClient.CreateEmployee(empId, empName, empComment);
                 createClient.AddEmployee(emp);
 
-                var empOneDetails = retrieveClient.SearchById(empId);
+                var empOneDetails = retrieveClient.GetById(empId);
 
                 Assert.AreEqual(1, empOneDetails.EmployeeID);
                 Assert.AreEqual("saif", empOneDetails.EmployeeName);

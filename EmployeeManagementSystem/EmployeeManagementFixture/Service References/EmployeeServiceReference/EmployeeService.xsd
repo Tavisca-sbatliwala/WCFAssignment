@@ -3,8 +3,8 @@
   <xs:complexType name="EmployeeManagement">
     <xs:sequence>
       <xs:element minOccurs="0" name="Comment" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="EmpID" type="xs:int" />
-      <xs:element minOccurs="0" name="EmpName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EmployeeID" type="xs:int" />
+      <xs:element minOccurs="0" name="EmployeeName" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="TimeSubmitted" type="xs:dateTime" />
     </xs:sequence>
   </xs:complexType>
