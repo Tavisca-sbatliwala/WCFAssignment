@@ -165,7 +165,7 @@ namespace EmployeeManagementSystem
                 fault.FaultId = 100;
                 fault.FaultMessage = "Employee Does not exits";
                 fault.FaultDetail = "Employee is Not Present in the List";
-                throw new FaultException<EmployeeServiceFault>(fault, fault.FaultDetail);
+                throw new FaultException<EmployeeServiceFault>(fault);
             }
         }
         /// <summary>
@@ -186,7 +186,7 @@ namespace EmployeeManagementSystem
                 fault.FaultId = 100;
                 fault.FaultMessage = "Employee Does not exits";
                 fault.FaultDetail = "Employee is Not Present in the List";
-                throw new FaultException<EmployeeServiceFault>(fault, fault.FaultDetail);
+                throw new FaultException<EmployeeServiceFault>(fault,fault.FaultDetail);
             }
         }
         /// <summary>

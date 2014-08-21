@@ -232,16 +232,21 @@ namespace EmployeeManagementFixture
         /// </summary>
 
         [TestMethod]
-        [ExpectedException(typeof(FaultException<EmployeeServiceFault>))]
         public void ModifyCommentWhenEmployeeNotExits()
         {
-
+           
             using (var createClient = new EmployeeCreateClient("BasicHttpBinding_IEmployeeCreate"))
             {
                 var emp = createClient.CreateEmployee(1, "saifuddin", "Hello..Again..");
                 createClient.AddEmployee(emp);
-
-                var empModified = createClient.ModifyComment(6, "Modified Hello...");
+                try
+                {
+                    var empModified = createClient.ModifyComment(6, "Modified Hello...");
+                }
+                catch (FaultException<EmployeeServiceFault> fault)
+                {
+                    Assert.AreEqual(100,fault.Detail.FaultId);
+                }
             }
         }
 
@@ -250,15 +255,20 @@ namespace EmployeeManagementFixture
         /// </summary>
 
         [TestMethod]
-        [ExpectedException(typeof(FaultException<EmployeeServiceFault>))]
         public void GetEmployeeWhenNoEmployeeExits()
         {
 
             using (var retrieveClient = new EmployeeRetrieveClient("WSHttpBinding_IEmployeeRetrieve"))
             {
-
-                EmployeeManagement[] employee = retrieveClient.GetAllEmployee();
-                Assert.AreEqual(0, employee.Length);
+                try
+                {
+                    EmployeeManagement[] employee = retrieveClient.GetAllEmployee();
+                }
+                catch (FaultException<EmployeeServiceFault> fault)
+                {
+                    Assert.AreEqual("Employee Does not exits", fault.Detail.FaultMessage);
+                }
+              
             }
         }
 
@@ -267,13 +277,19 @@ namespace EmployeeManagementFixture
         /// </summary>
 
         [TestMethod]
-        [ExpectedException(typeof(FaultException<EmployeeServiceFault>))]
         public void RemoveEmployeeWhenEmployeeNotExists()
         {
 
             using (var createClient = new EmployeeCreateClient("BasicHttpBinding_IEmployeeCreate"))
             {
-                createClient.RemoveEmployee(1);
+                try
+                {
+                    createClient.RemoveEmployee(1);
+                }
+                catch (FaultException<EmployeeServiceFault> fault)
+                {
+                    Assert.AreEqual("Employee Does not exits", fault.Detail.FaultMessage);
+                }
             }
         }
 
@@ -282,7 +298,6 @@ namespace EmployeeManagementFixture
         /// </summary>
 
         [TestMethod]
-        [ExpectedException(typeof(FaultException<EmployeeServiceFault>))]
         public void CreateEmployeeWhenItsAlreadyExists()
         {
 
@@ -290,33 +305,51 @@ namespace EmployeeManagementFixture
             {
                 var emp = createClient.CreateEmployee(1, "saifuddin", "Hello..Again..");
                 createClient.AddEmployee(emp);
-
-                var empOne = createClient.CreateEmployee(1, "saifuddin", "Hello..Again..");
-                createClient.AddEmployee(empOne);
+                try
+                {
+                    var empOne = createClient.CreateEmployee(1, "saifuddin", "Hello..Again..");
+                    createClient.AddEmployee(empOne);
+                }
+                catch (FaultException<EmployeeServiceFault> fault)
+                {
+                    Assert.AreEqual("Employee Already Exists", fault.Detail.FaultMessage);
+                }
             }
         }
 
         [TestMethod]
-        [ExpectedException(typeof(FaultException<EmployeeServiceFault>))]
         public void CreateEmployeeWithInvalidEmployeeID()
         {
 
             using (var createClient = new EmployeeCreateClient("BasicHttpBinding_IEmployeeCreate"))
             {
-                var emp = createClient.CreateEmployee(-1, "saifuddin", "Hello..Again..");
-                createClient.AddEmployee(emp);
+                try
+                {
+                    var emp = createClient.CreateEmployee(-1, "saifuddin", "Hello..Again..");
+                    createClient.AddEmployee(emp);
+                }
+                catch (FaultException<EmployeeServiceFault> fault)
+                {
+                    Assert.AreEqual("Employee ID Should be Postive", fault.Detail.FaultMessage);
+                }
             }
         }
 
         [TestMethod]
-        [ExpectedException(typeof(FaultException<EmployeeServiceFault>))]
         public void CreateEmployeeWithInvalidEmployeeName()
         {
 
             using (var createClient = new EmployeeCreateClient("BasicHttpBinding_IEmployeeCreate"))
             {
-                var emp = createClient.CreateEmployee(1, "sai12321", "Hello..Again..");
-                createClient.AddEmployee(emp);
+                try
+                {
+                    var emp = createClient.CreateEmployee(1, "sai12321", "Hello..Again..");
+                    createClient.AddEmployee(emp);
+                }
+                catch (FaultException<EmployeeServiceFault> fault)
+                {
+                    Assert.AreEqual("Employee Name Should Contains Only Letters", fault.Detail.FaultMessage);
+                }
             }
         }
 
